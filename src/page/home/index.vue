@@ -6,12 +6,15 @@ const state = reactive({
 </script>
 
 <template>
-  <h1>Vue Boot</h1>
+  <div>
+    <h1>Vue Boot</h1>
+  </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 h1 {
-  color: #42b983;
+  color: $-text-color;
   text-align: center;
+  background-color: #c3c3c3;
 }
 </style>

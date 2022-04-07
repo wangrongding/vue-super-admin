@@ -108,3 +108,131 @@ export const useStore = defineStore("main", {
   <button @click="store.counter++">changeCount</button>{{ store.counter }}
 </template>
 ```
+
+## scss 以及 styleLint
+
+```sh
+yarn add sass -D
+```
+
+### 使用 scss
+
+项目中使用 scss 不需要在哪里引入，安装完 sass 后，直接在 style 中使用即可。
+
+```html
+<style scoped lang="scss">
+  .text {
+    color: #42b983;
+  }
+</style>
+```
+
+在 vite.config.js 中通过 css.preprocessorOptions.scss.additionalData 可注入全局预定义的变量和样式
+
+代码如下 👇
+
+```json
+{
+  "css": {
+    // css预处理器
+    "preprocessorOptions": {
+      "scss": {
+        // 在全局中使用 index.scss中预定义的变量
+        "additionalData": "@import \"./src/styles/index.scss\";"
+      }
+    }
+  }
+}
+```
+
+### 使用 stylelint
+
+```sh
+yarn add stylelint -D
+```
+
+由于 Stylelint v14 及以上 做了 break change ，不再解析非 css 文件，所以很多原来老的配置方法已经不行了。
+官方也给出了相关说明：
+
+> Stylelint 不再包含以下语法：
+>
+> - 解析类 CSS 语言，如 SCSS、Sass、Less 和 SugarSS
+> - 从 HTML、Markdown 和 CSS-in-JS 对象和模板文字中提取样式
+
+所以当我们项目需要对 scss，vue，html 等文件进行校验时，则需要额外安装依赖来实现。
+
+例如：
+
+- `stylelint-config-html`支持解析 HTML、XML、Vue、Svelte 和 PHP，且提供它们的标准配置
+- `stylelint-config-standard-scss`支持 lint SCSS 文件及提供 SCSS 的标准配置
+- `stylelint-config-recommended-vue`支持 lint Vue 文件及提供 vue 的标准配置
+
+这里我只选择`stylelint-config-standard-scss`和`stylelint-config-recommended-vue`，下面安装他们。
+
+```sh
+yarn add stylelint-config-recommended-vue stylelint-config-standard-scss -D
+```
+
+安装完成后我们在项目根目录中新建一个`stylelint.config.js`文件。
+
+```javascript
+module.exports = {
+  defaultSeverity: "error",
+  extends: [
+    "stylelint-config-standard-scss",
+    "stylelint-config-recommended-vue",
+  ],
+  rules: {
+    "block-no-empty": null,
+    "color-no-invalid-hex": true,
+    "max-empty-lines": 1,
+  },
+};
+```
+
+让 stylelint 集成`stylelint-config-standard-scss`和`stylelint-config-recommended-vue`的规则配置
+我们也可以在 rules 里写一些自定义的规则覆盖继承的规则，自己写的 rules 的权值大于集成的规则。
+
+如果你不想用`stylelint-config-recommended-vue`中的规则，只借助它的解析能力。
+那么你只要把 extends 中改为`stylelint-config-html/vue`即可。
+
+```diff
+module.exports = {
+  defaultSeverity: "error",
+  extends: [
+    "stylelint-config-standard-scss",
+--    "stylelint-config-recommended-vue",
+++    "stylelint-config-html/vue",
+  ],
+  rules: {
+    "block-no-empty": null,
+    "color-no-invalid-hex": true,
+    "max-empty-lines": 1,
+  },
+};
+```
+
+然后自己写自己团队的规则或者使用`stylelint-config-standard`的共享规则配置。
+
+### vscode 插件 stylelint
+
+为了不让自己每次在 commit 才校验出代码有问题，我们最好装一个 stylelint 插件，这样一边写，可以看到有问题的代码底下出现红线，鼠标移上去可以看到具体的问题所在，和 eslint 一模一样的玩法。
+
+只是需要注意的是：安装 stylelint 插件后，首先要根据自己的情况选择在全局设置或者工作区设置扩展需要验证的文件集合
+
+可以通过`ctrl+,`打开设置面板，选择用户或者工作区，找到扩展->Stylelint->Validate,后点击添加项，依次添加即可
+
+![](https://gitee.com/wangrongding/image-house/raw/master/images/202204080104909.png)
+
+或者你直接在 settings.json 里添加如下内容
+
+```json
+{ "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass"] }
+```
+
+如果只需要在工作区作用的话，在根目录建一个`.vscode`文件夹，然后在里面建一个`settings.json`文件，把上述内容写进去即可。
+
+## 包管理器限制
+
+npm ,yarn,pnpm
+lock 文件

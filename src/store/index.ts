@@ -16,7 +16,7 @@ export const useStore = defineStore("main", {
     // getUserInfo: (state) => state.navigatorInfo,
   },
   actions: {
-    setUserInfo(data?: any) {},
-    async wxLogin() {},
+    setUserInfo(data: any) {},
+    async login() {},
   },
 });
