@@ -5,3 +5,4 @@ const store = useStore();
 <template>
   <button @click="store.counter++">changeCount</button>{{ store.counter }}
 </template>
+<style lang="scss"></style>

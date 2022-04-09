@@ -6,8 +6,17 @@ module.exports = {
   ],
   plugins: ["stylelint-order"],
   rules: {
-    "block-no-empty": null,
-    "color-no-invalid-hex": true,
     "max-empty-lines": 1,
+    "color-no-invalid-hex": true,
+    "color-hex-case": "lower",
+    "block-no-empty": null,
+    "no-empty-source": null,
   },
 };
+
+// 以忽略整個檔案
+/* stylelint-disable */
+// 忽略下一行
+/* stylelint-disable-next-line */
+// 指定需要忽略的文件
+// ignoreFiles: ["src/assets/scss/abc.scss"];
