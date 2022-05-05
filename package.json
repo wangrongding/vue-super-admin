@@ -6,14 +6,17 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext src/**/*.{vue,js,jsx,ts,jsx,tsx} --fix",
-    "lint:css": "stylelint src/**/*.{vue,css,sass,scss,less} --fix",
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+    "lint:css": "stylelint *.{vue,css,sass,scss,less} --fix",
     "prepare": "husky install",
     "preinstall": "npx npm-limit yarn"
   },
   "lint-staged": {
     "*.{vue,css,sass,scss}": [
       "stylelint --fix"
+    ],
+    "*.{vue,js,jsx,ts,jsx,tsx}": [
+      "eslint --fix"
     ]
   },
   "dependencies": {
