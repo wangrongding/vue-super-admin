@@ -7,11 +7,12 @@
 //   export default component;
 // }
 
-declare module "*.vue" {
-  import { defineComponent } from "vue";
+declare module '*.vue' {
+  import { defineComponent } from 'vue';
+
   const Component: ReturnType<typeof defineComponent>;
   export default Component;
 }
 
-declare module "*.js";
-declare module "*.ts";
+declare module '*.js';
+declare module '*.ts';
