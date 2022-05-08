@@ -272,5 +272,3 @@ vue3 中有诸如 defineProps 之类的全局的预编译宏，而 eslint 不知
 ```
 
 ## 包管理器限制
-
-npm ,yarn,pnpm lock 文件
