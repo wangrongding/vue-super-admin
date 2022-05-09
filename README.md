@@ -193,6 +193,30 @@ vue3 中有诸如 defineProps 之类的全局的预编译宏，而 eslint 不知
 
 ### 解决 Prettier 和 Eslint 的冲突
 
+`eslint-config-prettier`关闭所有不必要或可能与 Prettier 冲突的规则。
+
+安装
+
+```sh
+npm install  eslint-config-prettier -D
+# or
+yarn add  eslint-config-prettier -D
+```
+
+在 eslint 配置文件的 extends 中添加如下配置
+
+```json
+{
+  "extends": [
+    "other ...",
+    "prettier" // prettier规范,覆盖eslint格式配置,写在最后
+  ]
+}
+```
+
+更多详细的可以看
+[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier#readme)
+
 ### 解决 Prettier 和 StyleLint 的冲突
 
 `stylelint-config-prettier` 用于关闭所有不必要或可能与 Prettier 冲突的规则。这使
