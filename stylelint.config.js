@@ -3,6 +3,7 @@ module.exports = {
   extends: [
     'stylelint-config-standard-scss',
     'stylelint-config-recommended-vue',
+    'stylelint-config-prettier',
   ],
   plugins: ['stylelint-order'],
   rules: {

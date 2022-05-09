@@ -6,16 +6,20 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
-    "lint:css": "stylelint *.{vue,css,sass,scss,less} --fix",
+    "stylelint": "stylelint *.{vue,css,sass,scss,less} --fix",
+    "format": "prettier --write src",
+    "lint": "npm run format && eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+    "stylelint-check": "stylelint-config-prettier-check",
     "prepare": "husky install",
     "preinstall": "npx npm-limit yarn"
   },
   "lint-staged": {
     "*.{vue,css,sass,scss}": [
+      "prettier --write",
       "stylelint --fix"
     ],
     "*.{vue,js,jsx,ts,jsx,tsx}": [
+      "prettier --write",
       "eslint --fix"
     ]
   },
@@ -26,18 +30,22 @@
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.1",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
+    "@vitejs/plugin-vue": "^2.3.1",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.7.1",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.7",
     "postcss-html": "^1.3.0",
+    "prettier": "^2.6.2",
     "sass": "^1.50.0",
     "stylelint": "^14.6.1",
+    "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-order": "^5.0.0",
