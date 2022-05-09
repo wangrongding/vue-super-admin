@@ -9,8 +9,7 @@ module.exports = {
     // 'plugin:vue/essential',// vue核心规范
     'plugin:vue/vue3-recommended', // vue3规范
     'airbnb-base',
-    'prettier', // 格式的问题就由Prettier接手
-    // 'plugin:prettier/recommended', // prettier规范,覆盖eslint格式配置,写在最后
+    'prettier', // prettier规范,覆盖eslint格式配置,写在最后
   ],
   parserOptions: {
     ecmaVersion: 'latest',

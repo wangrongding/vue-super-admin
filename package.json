@@ -14,12 +14,13 @@
     "preinstall": "npx npm-limit yarn"
   },
   "lint-staged": {
+    "*.{vue,js,ts,jsx,tsx,css,sass,scss,json,md}": [
+      "prettier --write"
+    ],
     "*.{vue,css,sass,scss}": [
-      "prettier --write",
       "stylelint --fix"
     ],
     "*.{vue,js,jsx,ts,jsx,tsx}": [
-      "prettier --write",
       "eslint --fix"
     ]
   },
