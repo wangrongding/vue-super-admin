@@ -1,9 +1,42 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import * as path from 'path';
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    // Api自动导入
+    AutoImport({
+      // 目标文件
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/,
+        /\.vue\?vue/, // .vue
+        /\.md$/, // .md
+      ],
+      // 全局引入插件
+      imports: ['vue', 'vue-router'],
+      resolvers: [
+        // 自动导入Element-Plus的Api
+        // ElementPlusResolver(),
+      ],
+      // eslint报错解决方案
+      eslintrc: {
+        enabled: true, // Default `false`
+        filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+        globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+      },
+    }),
+    // 按需导入组件
+    Components({
+      dts: true, // enabled by default if `typescript` is installed
+      // 自动导入Element-Plus的组件
+      resolvers: [ElementPlusResolver()],
+    }),
+  ],
   server: {
     host: '0.0.0.0',
     port: 9421,

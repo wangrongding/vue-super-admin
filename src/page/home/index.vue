@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
-
+// import { reactive } from 'vue';
 const state = reactive({
   count: 0,
 });
@@ -9,6 +8,7 @@ const state = reactive({
 <template>
   <div>
     <h1>Vue Boot</h1>
+    <div>{{ state.count }}</div>
   </div>
 </template>
 

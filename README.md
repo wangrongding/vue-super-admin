@@ -8,13 +8,49 @@
 
 # 框架模板搭建过程记录
 
-技术栈: Vue3 + Typescript + Vite + VueRouter4 + Pinia  
+技术栈: Vue3 + Typescript + Vite + VueRouter4 + Pinia + Axios + Element-Plus  
 代码质量校验与代码风格校验: Eslint, Prettier, Stylelint  
 git 提交信息校验: Commitlint
 
 项目中用到了`husky, lint-staged, commitizen, commitlint`详细说明的部分，请参考我之前写的一篇系列文章: [谁动了我的代码！(协同仓库该有的规范)🔥](https://juejin.cn/post/7063912026384367629)
 
-## Scss 以及 Stylelint
+## Eslint 代码质量约束
+
+```sh
+# 初始化eslint配置文件，并安装相关依赖
+npx eslint --init
+```
+
+执行命令后选择对应的配置即可 ![](https://raw.githubusercontent.com/wangrongding/image-house/master/images202205060013009.png)
+
+我这里选择的是 Airbnb 的规范，Airbnb config 有一个规则 eslint(import/no-unresolved)，这很好，但是 Eslint 不知道如何解析别名路径。我这里直接在 rules 中设置`'import/no-unresolved': 0`，把它关了。
+
+我们是 Vue3 的项目，所以我们需要把`plugin:vue/essential`改成`plugin:vue/vue3-recommended`，这样就可以把 vue3 的规则都引入了。
+
+或者你也可以在 https://eslint.vuejs.org/ 中找到其它更符合你的配置来继承。
+
+```diff
+extends: [
+--'plugin:vue/essential',
+++'plugin:vue/vue3-recommended',
+  'airbnb-base',
+]
+```
+
+vue3 中有诸如 defineProps 之类的全局的预编译宏，而 eslint 不知其定义在哪里，需要在 global 选项中将其标注出来，由于 `eslint-plugin-vue` 为我们预设好了，我们只需要在 env 中添加如下代码即可。
+
+```json
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    // 开启setup语法糖环境 👇
+    "vue/setup-compiler-macros": true
+  }
+}
+```
+
+## Scss 以及 Stylelint 样式规范约束
 
 ```sh
 yarn add sass -D
@@ -134,43 +170,7 @@ module.exports = {
 
 如果只需要在工作区作用的话，在根目录建一个`.vscode`文件夹，然后在里面建一个`settings.json`文件，把上述内容写进去即可。
 
-## Eslint
-
-```sh
-# 初始化eslint配置文件，并安装相关依赖
-npx eslint --init
-```
-
-执行命令后选择对应的配置即可 ![](https://raw.githubusercontent.com/wangrongding/image-house/master/images202205060013009.png)
-
-我这里选择的是 Airbnb 的规范，Airbnb config 有一个规则 eslint(import/no-unresolved)，这很好，但是 Eslint 不知道如何解析别名路径。我这里直接在 rules 中设置`'import/no-unresolved': 0`，把它关了。
-
-我们是 Vue3 的项目，所以我们需要把`plugin:vue/essential`改成`plugin:vue/vue3-recommended`，这样就可以把 vue3 的规则都引入了。
-
-或者你也可以在 https://eslint.vuejs.org/ 中找到其它更符合你的配置来继承。
-
-```diff
-extends: [
---'plugin:vue/essential',
-++'plugin:vue/vue3-recommended',
-  'airbnb-base',
-]
-```
-
-vue3 中有诸如 defineProps 之类的全局的预编译宏，而 eslint 不知其定义在哪里，需要在 global 选项中将其标注出来，由于 `eslint-plugin-vue` 为我们预设好了，我们只需要在 env 中添加如下代码即可。
-
-```json
-{
-  "env": {
-    "browser": true,
-    "es2021": true,
-    // 开启setup语法糖环境 👇
-    "vue/setup-compiler-macros": true
-  }
-}
-```
-
-## Prettier
+## Prettier 格式化代码
 
 ### 解决 Prettier 和 Eslint 的冲突
 
@@ -240,7 +240,18 @@ npm run stylelint-check
 yarn stylelint-check
 ```
 
-## 包管理器限制
+## 项目包管理器限制
+
+解决团队成员，使用的包管理器不统一导致的项目出现不可预知的问题（npm,yarn,pnpm,cnpm...）  
+一款自己写的超 mini 包管理器限制器 `npm-limit` , 在 scripts 中添加如下 preinstall 命令即可。
+
+```json
+{
+  "scripts": {
+    "preinstall": "npx npm-limit yarn"
+  }
+}
+```
 
 ## 项目中设置路径别名
 
@@ -348,4 +359,147 @@ export const useStore = defineStore('main', {
   <button @click="store.counter++">changeCount</button>
   {{ store.counter }}
 </template>
+```
+
+## Api 自动导入
+
+unplugin-auto-import 是一个用于自动导入 api 的插件，可以自动导入 api 到项目中。
+
+```sh
+npm install -D unplugin-auto-import
+# or
+yarn add -D unplugin-auto-import
+```
+
+```typescript
+// vite.config.ts
+import AutoImport from 'unplugin-auto-import/vite';
+
+export default defineConfig({
+  plugins: [
+    AutoImport({
+      // 目标文件
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/,
+        /\.vue\?vue/, // .vue
+        /\.md$/, // .md
+      ],
+      // 全局引入插件
+      imports: [
+        // presets
+        'vue',
+        'vue-router',
+        // custom
+        {
+          '@vueuse/core': [
+            // named imports
+            'useMouse', // import { useMouse } from '@vueuse/core',
+            // alias
+            ['useFetch', 'useMyFetch'], // import { useFetch as useMyFetch } from '@vueuse/core',
+          ],
+          axios: [
+            // default imports
+            ['default', 'axios'], // import { default as axios } from 'axios',
+          ],
+          '[package-name]': [
+            '[import-names]',
+            // alias
+            ['[from]', '[alias]'],
+          ],
+        },
+      ],
+    }),
+  ],
+});
+```
+
+解决自动引入 api 后 eslint 报错, 可以添加以下代码后重启服务
+
+```typescript
+// vite.config.ts
+export default defineConfig({
+  plugins: [
+    AutoImport({
+      include: [...],
+      imports: [...],
+      // eslint报错解决方案
+      eslintrc: {
+        enabled: true, // Default `false`
+        filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+        globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+      },
+    }),
+  ],
+});
+```
+
+重启服务后会在根目录生成一个 .eslintrc-auto-import.json 文件然后回到 eslint 的配置文件的 extends 中，添加`.eslintrc-auto-import.json`
+
+```json
+{
+  "extends": [
+   "other..."
+ ++".eslintrc-auto-import.json"
+  ]
+}
+```
+
+解决自动引入 api 后 Ts 报错，在 tsconfig.json 的 include 中添加`auto-imports.d.ts`
+
+```json
+{
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+  ++"auto-imports.d.ts" // 此处引入该声明文件
+  ]
+}
+```
+
+## Element-Plus
+
+在 tsconfig.json 中通过 compilerOptions.type 指定全局组件类型，可以有 Volar 的支持。
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    // ...
+    "types": ["element-plus/global"]
+  }
+}
+```
+
+### 自动导入组件
+
+借助 unplugin-vue-components 和 unplugin-auto-import 这两款插件
+
+```sh
+npm install -D unplugin-vue-components unplugin-auto-import
+# or
+yarn add -D unplugin-vue-components unplugin-auto-import
+```
+
+在 Vite.config.ts 中添加如下配置
+
+```typescript
+// vite.config.ts
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+
+export default {
+  plugins: [
+    // ...
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    }),
+  ],
+};
 ```

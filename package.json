@@ -6,10 +6,12 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "stylelint": "stylelint *.{vue,css,sass,scss,less} --fix",
     "format": "prettier --write src",
-    "lint": "npm run format && eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+    "lint": "eslint \"src/**/*{.vue,.js,.ts,.jsx,.tsx}\" --fix",
+    "lintAll": "eslint . --ext .vue,.js,.ts,.jsx,.tsx src/ --fix",
+    "stylelint": "stylelint *.{vue,css,sass,scss,less} --fix",
     "stylelint-check": "stylelint-config-prettier-check",
+    "fal": "npm run format && npm run lint",
     "prepare": "husky install",
     "preinstall": "npx npm-limit yarn"
   },
@@ -26,6 +28,8 @@
   },
   "dependencies": {
     "@types/node": "^17.0.23",
+    "axios": "^0.27.2",
+    "element-plus": "^2.2.0",
     "pinia": "^2.0.13",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14"
@@ -56,6 +60,8 @@
     "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-order": "^5.0.0",
     "typescript": "^4.5.4",
+    "unplugin-auto-import": "^0.7.1",
+    "unplugin-vue-components": "^0.19.5",
     "vite": "^2.9.1",
     "vue-tsc": "^0.33.9"
   },
