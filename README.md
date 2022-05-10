@@ -12,6 +12,8 @@
 代码质量校验与代码风格校验: Eslint, Prettier, Stylelint  
 git 提交信息校验: Commitlint
 
+项目中用到了`husky, lint-staged, commitizen, commitlint`详细说明的部分，请参考我之前写的一篇系列文章: [谁动了我的代码！(协同仓库该有的规范)🔥](https://juejin.cn/post/7063912026384367629)
+
 ## Scss 以及 Stylelint
 
 ```sh
@@ -30,8 +32,7 @@ yarn add sass -D
 </style>
 ```
 
-在 vite.config.js 中通过 css.preprocessorOptions.scss.additionalData 可注入全局
-预定义的变量和样式
+在 vite.config.js 中通过 css.preprocessorOptions.scss.additionalData 可注入全局预定义的变量和样式
 
 代码如下 👇
 
@@ -55,27 +56,22 @@ yarn add sass -D
 yarn add stylelint -D
 ```
 
-由于 Stylelint v14 及以上 做了 break change ，不再解析非 css 文件，所以很多原来
-老的配置方法已经不行了。官方也给出了相关说明：
+由于 Stylelint v14 及以上 做了 break change ，不再解析非 css 文件，所以很多原来老的配置方法已经不行了。官方也给出了相关说明：
 
 > Stylelint 不再包含以下语法：
 >
 > - 解析类 CSS 语言，如 SCSS、Sass、Less 和 SugarSS
 > - 从 HTML、Markdown 和 CSS-in-JS 对象和模板文字中提取样式
 
-所以当我们项目需要对 scss，vue，html 等文件进行校验时，则需要额外安装依赖来实现
-。
+所以当我们项目需要对 scss，vue，html 等文件进行校验时，则需要额外安装依赖来实现。
 
 例如：
 
-- `stylelint-config-html`支持解析 HTML、XML、Vue、Svelte 和 PHP，且提供它们的标
-  准配置
+- `stylelint-config-html`支持解析 HTML、XML、Vue、Svelte 和 PHP，且提供它们的标准配置
 - `stylelint-config-standard-scss`支持 lint SCSS 文件及提供 SCSS 的标准配置
 - `stylelint-config-recommended-vue`支持 lint Vue 文件及提供 vue 的标准配置
 
-这里我只选
-择`stylelint-config-standard-scss`和`stylelint-config-recommended-vue`，下面安装
-他们。
+这里我只选择`stylelint-config-standard-scss`和`stylelint-config-recommended-vue`，下面安装他们。
 
 ```sh
 yarn add stylelint-config-recommended-vue stylelint-config-standard-scss -D
@@ -98,13 +94,9 @@ module.exports = {
 };
 ```
 
-让 stylelint 集
-成`stylelint-config-standard-scss`和`stylelint-config-recommended-vue`的规则配置
-我们也可以在 rules 里写一些自定义的规则覆盖继承的规则，自己写的 rules 的权值大于
-集成的规则。
+让 stylelint 集成`stylelint-config-standard-scss`和`stylelint-config-recommended-vue`的规则配置我们也可以在 rules 里写一些自定义的规则覆盖继承的规则，自己写的 rules 的权值大于集成的规则。
 
-如果你不想用`stylelint-config-recommended-vue`中的规则，只借助它的解析能力。那么
-你只要把 extends 中改为`stylelint-config-html/vue`即可。
+如果你不想用`stylelint-config-recommended-vue`中的规则，只借助它的解析能力。那么你只要把 extends 中改为`stylelint-config-html/vue`即可。
 
 ```diff
 module.exports = {
@@ -126,15 +118,11 @@ module.exports = {
 
 ### vscode 插件 stylelint
 
-为了不让自己每次在 commit 才校验出代码有问题，我们最好装一个 stylelint 插件，这
-样一边写，可以看到有问题的代码底下出现红线，鼠标移上去可以看到具体的问题所在，和
-eslint 一模一样的玩法。
+为了不让自己每次在 commit 才校验出代码有问题，我们最好装一个 stylelint 插件，这样一边写，可以看到有问题的代码底下出现红线，鼠标移上去可以看到具体的问题所在，和 eslint 一模一样的玩法。
 
-只是需要注意的是：安装 stylelint 插件后，首先要根据自己的情况选择在全局设置或者
-工作区设置扩展需要验证的文件集合
+只是需要注意的是：安装 stylelint 插件后，首先要根据自己的情况选择在全局设置或者工作区设置扩展需要验证的文件集合
 
-可以通过`ctrl+,`打开设置面板，选择用户或者工作区，找到扩展->Stylelint->Validate,
-后点击添加项，依次添加即可
+可以通过`ctrl+,`打开设置面板，选择用户或者工作区，找到扩展->Stylelint->Validate, 后点击添加项，依次添加即可
 
 ![](https://gitee.com/wangrongding/image-house/raw/master/images/202204080104909.png)
 
@@ -144,8 +132,7 @@ eslint 一模一样的玩法。
 { "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass"] }
 ```
 
-如果只需要在工作区作用的话，在根目录建一个`.vscode`文件夹，然后在里面建一
-个`settings.json`文件，把上述内容写进去即可。
+如果只需要在工作区作用的话，在根目录建一个`.vscode`文件夹，然后在里面建一个`settings.json`文件，把上述内容写进去即可。
 
 ## Eslint
 
@@ -154,15 +141,11 @@ eslint 一模一样的玩法。
 npx eslint --init
 ```
 
-执行命令后选择对应的配置即可
-![](https://raw.githubusercontent.com/wangrongding/image-house/master/images202205060013009.png)
+执行命令后选择对应的配置即可 ![](https://raw.githubusercontent.com/wangrongding/image-house/master/images202205060013009.png)
 
-我这里选择的是 Airbnb 的规范，Airbnb config 有一个规则
-eslint(import/no-unresolved)，这很好，但是 Eslint 不知道如何解析别名路径。我这里
-直接在 rules 中设置`'import/no-unresolved': 0`，把它关了。
+我这里选择的是 Airbnb 的规范，Airbnb config 有一个规则 eslint(import/no-unresolved)，这很好，但是 Eslint 不知道如何解析别名路径。我这里直接在 rules 中设置`'import/no-unresolved': 0`，把它关了。
 
-我们是 Vue3 的项目，所以我们需要把`plugin:vue/essential`改
-成`plugin:vue/vue3-recommended`，这样就可以把 vue3 的规则都引入了。
+我们是 Vue3 的项目，所以我们需要把`plugin:vue/essential`改成`plugin:vue/vue3-recommended`，这样就可以把 vue3 的规则都引入了。
 
 或者你也可以在 https://eslint.vuejs.org/ 中找到其它更符合你的配置来继承。
 
@@ -174,9 +157,7 @@ extends: [
 ]
 ```
 
-vue3 中有诸如 defineProps 之类的全局的预编译宏，而 eslint 不知其定义在哪里，需要
-在 global 选项中将其标注出来，由于 `eslint-plugin-vue` 为我们预设好了，我们只需
-要在 env 中添加如下代码即可。
+vue3 中有诸如 defineProps 之类的全局的预编译宏，而 eslint 不知其定义在哪里，需要在 global 选项中将其标注出来，由于 `eslint-plugin-vue` 为我们预设好了，我们只需要在 env 中添加如下代码即可。
 
 ```json
 {
@@ -214,13 +195,11 @@ yarn add  eslint-config-prettier -D
 }
 ```
 
-更多详细的可以看
-[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier#readme)
+更多详细的可以看 [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier#readme)
 
 ### 解决 Prettier 和 StyleLint 的冲突
 
-`stylelint-config-prettier` 用于关闭所有不必要或可能与 Prettier 冲突的规则。这使
-您可以使用自己喜欢的可共享配置，而不会在使用 Prettier 时妨碍其风格选择。
+`stylelint-config-prettier` 用于关闭所有不必要或可能与 Prettier 冲突的规则。这使您可以使用自己喜欢的可共享配置，而不会在使用 Prettier 时妨碍其风格选择。
 
 安装 `stylelint-config-prettier`：
 
@@ -230,8 +209,7 @@ npm install stylelint-config-prettier -D
 yarn add stylelint-config-prettier -D
 ```
 
-然后，追加 `stylelint-config-prettier` 到配置文件中的 extends 数组中。确保把它放
-在最后，所以它会覆盖其他配置。
+然后，追加 `stylelint-config-prettier` 到配置文件中的 extends 数组中。确保把它放在最后，所以它会覆盖其他配置。
 
 ```json
 {
@@ -242,8 +220,7 @@ yarn add stylelint-config-prettier -D
 }
 ```
 
-`stylelint-config-prettier` 附带一个小 CLI 工具，可帮助您检查您的配置是否包含任
-何与 Prettier 冲突的规则。
+`stylelint-config-prettier` 附带一个小 CLI 工具，可帮助您检查您的配置是否包含任何与 Prettier 冲突的规则。
 
 为了执行 CLI 工具，首先为其添加一个脚本 package.json：
 
