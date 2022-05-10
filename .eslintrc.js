@@ -19,11 +19,7 @@ module.exports = {
   },
   plugins: ['vue', '@typescript-eslint'],
   rules: {
-    // 允许依赖项为devDependencies
-    'import/no-extraneous-dependencies': [
-      'error',
-      { peerDependencies: ['**/*.config.ts'] },
-    ],
+    'import/no-extraneous-dependencies': 0, // 禁止使用无关的包
     'import/no-unresolved': 0, // 关闭检查未解析的模块
     'vue/multi-word-component-names': 0, // 禁止使用多单词组件名
     'no-unused-vars': 0, // 关闭未使用变量检查

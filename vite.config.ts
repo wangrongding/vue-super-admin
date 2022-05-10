@@ -21,7 +21,7 @@ export default defineConfig({
       imports: ['vue', 'vue-router'],
       resolvers: [
         // 自动导入Element-Plus的Api
-        // ElementPlusResolver(),
+        ElementPlusResolver(),
       ],
       // eslint报错解决方案
       eslintrc: {

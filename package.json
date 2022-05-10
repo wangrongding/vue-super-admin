@@ -13,7 +13,8 @@
     "stylelint-check": "stylelint-config-prettier-check",
     "fal": "npm run format && npm run lint",
     "prepare": "husky install",
-    "preinstall": "npx npm-limit yarn"
+    "preinstall": "npx npm-limit yarn",
+    "cz": "cz"
   },
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx,css,sass,scss,json,md}": [

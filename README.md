@@ -459,6 +459,31 @@ export default defineConfig({
 }
 ```
 
+## 组件自动导入
+
+通过 `unplugin-vue-components` 插件实现，`unplugin-vue-components` 是一个用于 Vue 按需自动导入组件的插件。安装
+
+```sh
+npm install -D unplugin-vue-components
+# or
+yarn add -D unplugin-vue-components
+```
+
+使用
+
+```typescript
+// vite.config.ts
+import Components from 'unplugin-vue-components/vite';
+
+export default defineConfig({
+  plugins: [
+    Components({
+      /* options */
+    }),
+  ],
+});
+```
+
 ## Element-Plus
 
 在 tsconfig.json 中通过 compilerOptions.type 指定全局组件类型，可以有 Volar 的支持。
