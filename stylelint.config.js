@@ -13,6 +13,18 @@ module.exports = {
     'block-no-empty': null,
     'no-empty-source': null,
   },
+  ignoreFiles: [
+    '**/*.js',
+    '**/*.jsx',
+    '**/*.ts',
+    '**/*.tsx',
+    '**/*.png',
+    '**/*.ttf',
+    '**/*.woff',
+    '**/*.json',
+    '**/*.md',
+    '**/*.html',
+  ],
 };
 
 // 以忽略整個檔案

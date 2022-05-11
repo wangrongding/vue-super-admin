@@ -9,9 +9,9 @@
     "format": "prettier --write src",
     "lint": "eslint \"src/**/*{.vue,.js,.ts,.jsx,.tsx}\" --fix",
     "lintAll": "eslint . --ext .vue,.js,.ts,.jsx,.tsx src/ --fix",
-    "stylelint": "stylelint *.{vue,css,sass,scss,less} --fix",
+    "stylelint": "stylelint \"src/**/*.*\" --fix",
     "stylelint-check": "stylelint-config-prettier-check",
-    "fal": "npm run format && npm run lint",
+    "fal": "npm run format && npm run stylelint && npm run lint",
     "prepare": "husky install",
     "preinstall": "npx npm-limit yarn",
     "cz": "cz"
