@@ -3,7 +3,6 @@ import { ElMessage } from 'element-plus';
 import { useStore } from '@/store/index.ts';
 
 const baseUrl = import.meta.env.VITE_APP_BASE_API as string;
-
 // 创建axios实例
 const request = axios.create({
   baseURL: baseUrl, // api的base_url
@@ -24,7 +23,6 @@ request.interceptors.request.use(
         data[item] === undefined ||
         data[item] === null ||
         data[item] === 'null'
-        /* || data[item] === "" */
       ) {
         delete data[item];
       }
@@ -65,12 +63,10 @@ async function successCallback(res: any) {
 // 请求错误回调
 function errorCallback(error: any) {
   if (error.response.status === 401) {
-    sessionStorage.clear();
     ElMessage({
       type: 'warning',
       message: '请重新登录！',
     });
-    window.history.pushState({}, '/student', '/student');
   } else {
     ElMessage({
       message: error,
