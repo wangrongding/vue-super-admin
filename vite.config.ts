@@ -1,11 +1,12 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import * as path from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 // https://vitejs.dev/config/
-export default defineConfig({
+
+export default defineConfig((config) => ({
   plugins: [
     vue(),
     // Api自动导入
@@ -41,6 +42,13 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 9421,
     // open: true,
+    proxy: {
+      '/api': {
+        target: loadEnv(config.mode, process.cwd()).VITE_APP_BASE_API,
+        changeOrigin: true,
+        rewrite: (pathStr) => pathStr.replace(/^\/api/, ''),
+      },
+    },
   },
   resolve: {
     // 设置别名
@@ -56,4 +64,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));
