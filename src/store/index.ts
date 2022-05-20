@@ -1,7 +1,7 @@
-import { createPinia, defineStore } from 'pinia';
+import { createPinia, defineStore } from 'pinia'
 
-const pinia = createPinia();
-export default pinia;
+const pinia = createPinia()
+export default pinia
 
 export const useStore = defineStore('main', {
   // 推荐使用 完整类型推断的箭头函数
@@ -18,4 +18,4 @@ export const useStore = defineStore('main', {
     // setUserInfo(data: any) {},
     // async login() {},
   },
-});
+})

@@ -6,11 +6,11 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
+const router = useRouter()
 function back() {
-  router.go(-1);
+  router.go(-1)
 }
 </script>
 <style lang="scss" scoped>

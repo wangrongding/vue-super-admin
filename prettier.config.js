@@ -5,7 +5,7 @@ module.exports = {
   tabWidth: 2, // 空格数
   useTabs: false, // 是否开启tab
   printWidth: 80, // 换行的宽度
-  semi: true, // 是否在语句末尾打印分号
+  semi: false, // 是否在语句末尾打印分号
   singleQuote: true, // 是否使用单引号
   quoteProps: 'as-needed', // 对象的key仅在需要时用引号 as-needed|consistent|preserve
   trailingComma: 'all', // 多行时尽可能打印尾随逗号 |all|es5|none
@@ -20,4 +20,4 @@ module.exports = {
   endOfLine: 'lf', // 换行符
   proseWrap: 'never', // 当超出print width时就折行 always|never|preserve .md文件?
   embeddedLanguageFormatting: 'auto',
-};
+}

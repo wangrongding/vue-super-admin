@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const state = reactive({
   count: 0,
-});
+})
 </script>
 
 <template>
