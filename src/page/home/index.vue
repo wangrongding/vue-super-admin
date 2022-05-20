@@ -5,16 +5,39 @@ const state = reactive({
 </script>
 
 <template>
-  <div>
-    <h1>Vue Boot</h1>
-    <div>{{ state.count }}</div>
+  <div class="page-container">
+    <p align="center">
+      <a
+        href="https://github.com/wangrongding"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          width="300"
+          src="https://assets.fedtop.com/picbed/vue-super.png"
+          alt="Vue logo"
+        />
+      </a>
+    </p>
+    <h1>
+      Vue Super 👉
+      <a href="https://github.com/wangrongding" target="_blank">仓库</a>
+    </h1>
+    <router-link to="/testing" style="margin: 0 auto">go go go!</router-link>
   </div>
 </template>
 
 <style scoped lang="scss">
-h1 {
-  color: $-text-color;
+.page-container {
   text-align: center;
-  background-color: #c3c3c3;
+
+  h1 {
+    color: $-text-color;
+    background-color: #34495e;
+
+    a {
+      color: $-text-color;
+    }
+  }
 }
 </style>
