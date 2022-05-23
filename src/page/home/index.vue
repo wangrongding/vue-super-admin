@@ -14,7 +14,7 @@ const state = reactive({
       >
         <img
           width="300"
-          src="https://assets.fedtop.com/picbed/vue-super.png"
+          src="https://assets.fedtop.com/picbed/logo.png"
           alt="Vue logo"
         />
       </a>
