@@ -17,7 +17,9 @@ module.exports = {
   overrides: [
     {
       files: ['*.ts', '*.tsx', '*.vue'],
-      rules: {},
+      rules: {
+        'no-use-before-define': 0,
+      },
     },
   ],
   // 支持ts的最新语法

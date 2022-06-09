@@ -20,6 +20,7 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
+    "types/**/*.d.ts",
     "src/**/*.vue",
     "components.d.ts", // 自动注册的组件
     "auto-imports.d.ts" // 自动导入的api

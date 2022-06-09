@@ -1,8 +1,4 @@
-<script setup lang="ts">
-const state = reactive({
-  count: 0,
-})
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="page-container">

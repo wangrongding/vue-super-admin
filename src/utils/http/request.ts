@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import { useStore } from '@/store/index.ts'
 
 const baseUrl = import.meta.env.VITE_APP_BASE_API as string
 // 创建axios实例
@@ -13,9 +12,7 @@ const request = axios.create({
 })
 // request请求拦截器
 request.interceptors.request.use(
-  (config: any) => {
-    const { loginInfo } = useStore()
-    ;(config.headers as any)['platform-auth'] = `bearer ${loginInfo.token}`
+  (config) => {
     const { data = {}, method } = config
     // 将请求中值为undefined,null的过滤
     Object.keys(data).forEach((item) => {
@@ -39,7 +36,7 @@ request.interceptors.request.use(
     }
     return config
   },
-  (error: any) => error,
+  (error) => error,
 )
 
 // 请求成功回调
