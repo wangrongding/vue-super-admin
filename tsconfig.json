@@ -10,8 +10,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "declaration": true,
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
+    "baseUrl": "./", // paths中指定文件夹的相对路径
     "paths": {
       "@": ["./src"]
     }
