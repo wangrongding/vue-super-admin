@@ -1,19 +1,13 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="page-container">
+  <div class="home-container">
     <p align="center">
-      <a
-        href="https://github.com/wangrongding"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          width="300"
-          src="https://assets.fedtop.com/picbed/logo.png"
-          alt="Vue logo"
-        />
-      </a>
+      <img
+        width="300"
+        src="https://assets.fedtop.com/picbed/logo.png"
+        alt="Vue logo"
+      />
     </p>
     <h1>
       Vue Super 👉
@@ -24,7 +18,7 @@
 </template>
 
 <style scoped lang="scss">
-.page-container {
+.home-container {
   text-align: center;
 
   h1 {

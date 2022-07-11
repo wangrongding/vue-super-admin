@@ -18,14 +18,18 @@ module.exports = {
     '**/*.jsx',
     '**/*.ts',
     '**/*.tsx',
+    '**/*.gif',
     '**/*.png',
+    '**/*.jpg',
+    '**/*.jpeg',
+    '**/*.svg',
     '**/*.ttf',
     '**/*.woff',
     '**/*.json',
     '**/*.md',
     '**/*.html',
   ],
-};
+}
 
 // 以忽略整個檔案
 /* stylelint-disable */

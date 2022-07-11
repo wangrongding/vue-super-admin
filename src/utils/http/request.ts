@@ -73,6 +73,6 @@ function errorCallback(error: any) {
   }
   return Promise.reject(error)
 }
-// respone返回拦截器
+// response返回拦截器
 request.interceptors.response.use(successCallback, errorCallback)
 export default request

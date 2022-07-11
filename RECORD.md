@@ -533,3 +533,5 @@ export default {
   ],
 }
 ```
+
+### 支持 TSX

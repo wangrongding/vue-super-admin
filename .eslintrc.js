@@ -18,7 +18,8 @@ module.exports = {
     {
       files: ['*.ts', '*.tsx', '*.vue'],
       rules: {
-        'no-use-before-define': 0,
+        // 解决 ts 全局类型定义后，eslint报错的问题
+        'no-undef': 'off',
       },
     },
   ],
@@ -31,11 +32,21 @@ module.exports = {
   // 添加vue和@typescript-eslint插件，增强eslint的能力
   plugins: ['vue', '@typescript-eslint'],
   rules: {
+    'no-console': 2, //
     'import/no-extraneous-dependencies': 0, // 禁止使用无关的包
     'import/no-unresolved': 0, // 关闭检查未解析的模块
     'vue/multi-word-component-names': 0, // 禁止使用多单词组件名
     'no-unused-vars': 0, // 关闭未使用变量检查
     'no-param-reassign': 0, // 禁止对函数参数进行重新赋值
     '@typescript-eslint/no-empty-function': 0, // 禁止空函数
+    'no-use-before-define': 0, // 禁止在未定义前使用变量
+    '@typescript-eslint/no-explicit-any': 0, // 禁止使用any
+    '@typescript-eslint/no-non-null-assertion': 0, // 禁止使用non-null
+    '@typescript-eslint/no-unused-vars': 0, // 禁止未使用的变量
+    '@typescript-eslint/ban-ts-comment': 0, // 禁止使用ts忽略检查注释
+    'arrow-body-style': 0, // 禁止箭头函数体使用大括号
+    'prefer-destructuring': 0,
+    'no-plusplus': 0, // 禁止使用++，--
+    'no-continue': 0, // 禁止使用continue
   },
 }

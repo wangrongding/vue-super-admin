@@ -12,9 +12,9 @@ export interface toRouteType extends RouteLocationNormalized {
 }
 NProgress.configure({
   // 指定此项以更改父容器。（默认body：）
-  parent: '#app',
+  // parent: '#app',
   // 通过将其设置为 false 来关闭加载微调器。（默认true：）
-  showSpinner: true,
+  showSpinner: false,
   // 使用缓动（CSS 缓动字符串）和速度（以毫秒为单位）调整动画设置
   easing: 'ease',
   speed: 500,
@@ -30,9 +30,11 @@ beforeRouteLeave：离开组件前
 */
 router.beforeEach(
   async (to: toRouteType, from: toRouteType, next: NavigationGuardNext) => {
-    // start progress bar
     NProgress.start()
     next()
-    NProgress.done()
   },
 )
+
+router.beforeResolve(async () => {
+  NProgress.done()
+})

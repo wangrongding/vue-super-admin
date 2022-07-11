@@ -6,26 +6,30 @@
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
+    // "jsx": "react-jsx",
     "sourceMap": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "declaration": true,
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "allowJs": true,
+    "noImplicitAny": false,
     "skipLibCheck": true,
-    "baseUrl": "./", // paths中指定文件夹的相对路径
+    "baseUrl": ".",
     "paths": {
-      "@": ["./src"]
+      // "@": ["./src"],
+      "@/*": ["src/*"]
     }
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "types/**/*.d.ts",
     "src/**/*.vue",
+    "types/**/*.d.ts",
     "components.d.ts", // 自动注册的组件
     "auto-imports.d.ts" // 自动导入的api
   ],
+  "exclude": ["node_modules", "dist", "**/*.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,1 +1,9 @@
-$-text-color: #dcffef;
+@charset "utf-8";
+
+// 引入重置样式
+@import './reset';
+
+// 动画
+@import './transition';
+
+// 公共样式
