@@ -5,7 +5,7 @@ import * as path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-
+import Inspect from 'vite-plugin-inspect'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 // https://vitejs.dev/config/
@@ -39,12 +39,6 @@ export default defineConfig((config) => ({
         // 自动导入必须遵循名称格式 {prefix：默认为i}-{collection：图标集合的名称}-{icon：图标名称}
         // IconsResolver(),
         IconsResolver({
-          prefix: 'i',
-          enabledCollections: ['ep'],
-          extension: 'tsx',
-        }),
-        IconsResolver({
-          prefix: 'i',
           enabledCollections: ['ep'],
           extension: 'vue',
         }),
@@ -59,10 +53,15 @@ export default defineConfig((config) => ({
     // 按需导入组件
     Components({
       dts: true, // enabled by default if `typescript` is installed
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/,
+        /\.vue\?vue/, // .vue
+        /\.md$/, // .md
+      ],
       resolvers: [
         // 自动注册图标组件
         IconsResolver({
-          prefix: 'i',
           extension: 'vue',
           enabledCollections: ['ep'],
         }),
@@ -75,6 +74,7 @@ export default defineConfig((config) => ({
         ElementPlusResolver(),
       ],
     }),
+    Inspect(),
   ],
   // 服务器特定选项，如主机、端口、https…
   server: {
