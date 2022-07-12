@@ -2,7 +2,6 @@
 import { ArrowRight } from '@element-plus/icons-vue'
 import { ref, watch, Ref } from 'vue'
 import { useRoute, RouteRecordRaw, RouteLocationMatched } from 'vue-router'
-import { find } from 'lodash'
 import { routerList } from '@/router/index.ts'
 import { getParentPaths } from '@/router/utils.ts'
 

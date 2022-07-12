@@ -13,7 +13,7 @@
       Vue Super 👉
       <a href="https://github.com/wangrongding" target="_blank">仓库</a>
     </h1>
-    <router-link to="/testing" style="margin: 0 auto">go go go!</router-link>
+    <router-link to="/testing" style="margin: 0 auto">go test!</router-link>
   </div>
 </template>
 
@@ -23,7 +23,8 @@
 
   h1 {
     color: $-text-color;
-    background-color: #34495e;
+    background-color: #a6bfd9;
+    margin: 40px;
 
     a {
       color: $-text-color;

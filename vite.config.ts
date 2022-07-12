@@ -15,7 +15,11 @@ export default defineConfig((config) => ({
     vue(),
     vueJsx(),
     Icons({
-      autoInstall: true,
+      compiler: 'vue3',
+    }),
+    Icons({
+      jsx: 'react',
+      compiler: 'jsx',
     }),
     // Api自动导入
     AutoImport({
@@ -32,8 +36,17 @@ export default defineConfig((config) => ({
         // 自动导入Element-Plus的Api
         ElementPlusResolver(),
         // 自动导入图标组件
+        // 自动导入必须遵循名称格式 {prefix：默认为i}-{collection：图标集合的名称}-{icon：图标名称}
+        // IconsResolver(),
         IconsResolver({
-          prefix: 'Icon',
+          prefix: 'i',
+          enabledCollections: ['ep'],
+          extension: 'tsx',
+        }),
+        IconsResolver({
+          prefix: 'i',
+          enabledCollections: ['ep'],
+          extension: 'vue',
         }),
       ],
       // eslint报错解决方案
@@ -49,6 +62,13 @@ export default defineConfig((config) => ({
       resolvers: [
         // 自动注册图标组件
         IconsResolver({
+          prefix: 'i',
+          extension: 'vue',
+          enabledCollections: ['ep'],
+        }),
+        IconsResolver({
+          prefix: 'i',
+          extension: 'tsx',
           enabledCollections: ['ep'],
         }),
         // 自动导入 Element Plus 组件
@@ -103,5 +123,6 @@ export default defineConfig((config) => ({
       ],
     },
   },
+  // 热更新时，清空控制台
   clearScreen: true,
 }))

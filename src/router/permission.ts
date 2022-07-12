@@ -8,6 +8,7 @@ export interface toRouteType extends RouteLocationNormalized {
     keepAlive?: boolean
     refreshRedirect: string
     dynamicLevel?: string
+    title: string
   }
 }
 NProgress.configure({
@@ -30,8 +31,10 @@ beforeRouteLeave：离开组件前
 */
 router.beforeEach(
   async (to: toRouteType, from: toRouteType, next: NavigationGuardNext) => {
+    // console.log('🚀🚀🚀 / to', to)
     NProgress.start()
     next()
+    window.document.title = to.meta.title
   },
 )
 

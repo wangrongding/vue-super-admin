@@ -1,6 +1,6 @@
 import { RouteRecordRaw, useRoute } from 'vue-router'
-import { ElMenu, ElSubMenu, ElMenuItem } from 'element-plus'
 import { routerList } from '@/router/index.ts'
+import { getParentPaths } from '@/router/utils.ts'
 import './Menu.scss'
 // import styles from '@/styles/variable.scss'
 
@@ -11,10 +11,24 @@ export default defineComponent({
     ElSubMenu,
     ElMenuItem,
   },
+  props: {
+    isCollapse: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup(props) {
     const routers = routerList
-    // console.log('🚀🚀🚀 / routers', routers)
     const route = useRoute()
+    // 默认高亮的菜单
+    const defaultActive = ref('/home')
+    // 获取激活的菜单
+    function getDefaultActive() {
+      // 当前路由的父级路径
+      const parentRoutes = getParentPaths(route.path, routerList)[0]
+      defaultActive.value = parentRoutes?.path || route.path
+    }
+
     // 创建菜单
     function createMenuItem(item: any) {
       if (!item.meta.type || item.meta.type === 'single') {
@@ -26,6 +40,9 @@ export default defineComponent({
             selected={item.selected}
             divided={item.divided}
           >
+            {/* <el-icon color='#00000080' size='20'>
+            </el-icon> */}
+            <i-ep-expand />
             {item.meta.title}
           </el-menu-item>
         )
@@ -44,32 +61,33 @@ export default defineComponent({
         </el-sub-menu>
       )
     }
+
+    // 监听路由变化
+    watch(
+      () => route.path,
+      () => {
+        getDefaultActive()
+      },
+      { immediate: true },
+    )
+
     return () => (
       <>
         <el-menu
-          default-active={route.matched[0].path}
           // mode='horizontal'
+          collapse={props.isCollapse}
           background-color='transparent'
           menu-trigger='hover'
           text-color='#000000'
+          default-active={defaultActive.value}
           unique-opened={true}
           active-text-color='#027AFF'
           router={true}
         >
           {routers.map((item: RouteRecordRaw) => createMenuItem(item))}
-          <el-menu-item>
-            <a href='https://www.fedtop.com' target='_blank'>
-              我的博客
-            </a>
-          </el-menu-item>
-          {/* index={route.matched[route.matched.length - 1].path} */}
-          <el-menu-item>
-            <a href='https://github.com/wangrongding' target='_blank'>
-              GitHub
-            </a>
-          </el-menu-item>
         </el-menu>
       </>
     )
   },
+  watch: {},
 })

@@ -8,9 +8,11 @@ declare module '@vue/runtime-core' {
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
-    ElButton: typeof import('element-plus/es')['ElButton']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    IEpExpand: typeof import('~icons/ep/expand.vue')['default']
+    IEpFold: typeof import('~icons/ep/fold.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
