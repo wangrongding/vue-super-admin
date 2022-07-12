@@ -17,10 +17,6 @@ export default defineConfig((config) => ({
     Icons({
       compiler: 'vue3',
     }),
-    Icons({
-      jsx: 'react',
-      compiler: 'jsx',
-    }),
     // Api自动导入
     AutoImport({
       // 目标文件
