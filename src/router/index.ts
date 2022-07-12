@@ -4,6 +4,7 @@ import {
   RouteRecordRaw,
   Router,
 } from 'vue-router'
+import { formatFlatteningRoutes } from './utils.ts'
 
 const Layout = () => import('@/layout/index.vue')
 
@@ -32,36 +33,19 @@ export const routerList: Array<RouteRecordRaw> = [
         path: '/list/detail',
         component: () => import('@/page/list/list-detail.vue'),
         meta: { title: '测试详情', type: 'single', icon: 'House' },
+        children: [
+          {
+            path: '/list/detail/test',
+            component: () => import('@/page/list/detail2.vue'),
+            meta: { title: '测试详情de详情', type: 'single' },
+          },
+        ],
       },
     ],
   },
-  {
-    path: '/list/detail',
-    component: () => import('@/page/list/list-detail.vue'),
-    meta: { title: '测试详情', type: 'single', icon: 'House' },
-  },
 ]
 
-export const menuRouterList: Array<RouteRecordRaw> = [
-  // {
-  //   path: '/list',
-  //   component: Layout,
-  //   meta: { title: '列表页', type: 'single', icon: 'House' },
-  //   redirect: '/list/index',
-  //   children: [
-  //     {
-  //       path: '/list/index',
-  //       component: () => import('@/page/list/index.vue'),
-  //       meta: { title: '列表页', type: 'single', icon: 'House' },
-  //     },
-  //     {
-  //       path: '/list/detail',
-  //       component: () => import('@/page/list/list-detail.vue'),
-  //       meta: { title: '测试详情', type: 'single', icon: 'House' },
-  //     },
-  //   ],
-  // },
-]
+const flatRouters = formatFlatteningRoutes(routerList)
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -69,9 +53,8 @@ export const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: Layout,
     redirect: '/home',
-    children: [...routerList],
+    children: [...flatRouters],
   },
-  ...menuRouterList,
   {
     path: '/login',
     name: 'login',

@@ -48,5 +48,7 @@ module.exports = {
     'prefer-destructuring': 0,
     'no-plusplus': 0, // 禁止使用++，--
     'no-continue': 0, // 禁止使用continue
+    'import/prefer-default-export': 0, // 禁止使用export default
+    'no-shadow': 0, // 禁止变量声明时使用相同名字
   },
 }
