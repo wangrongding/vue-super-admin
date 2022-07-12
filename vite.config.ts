@@ -65,10 +65,6 @@ export default defineConfig((config) => ({
           extension: 'vue',
           enabledCollections: ['ep'],
         }),
-        IconsResolver({
-          extension: 'tsx',
-          enabledCollections: ['ep'],
-        }),
         // 自动导入 Element Plus 组件
         ElementPlusResolver(),
       ],
