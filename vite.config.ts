@@ -66,7 +66,6 @@ export default defineConfig((config) => ({
           enabledCollections: ['ep'],
         }),
         IconsResolver({
-          prefix: 'i',
           extension: 'tsx',
           enabledCollections: ['ep'],
         }),
