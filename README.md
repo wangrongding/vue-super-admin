@@ -1,9 +1,8 @@
 # Vue-Super
 
 <p align="center">
-  <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer">
-    <!-- <img width="300" src="https://assets.fedtop.com/picbed/vue-super.png" alt="Vue logo"> -->
-    <img width="300" src="./public/logo.png" alt="Vue logo">
+  <a href="https://github.com/wangrongding" target="_blank" rel="noopener noreferrer">
+    <img width="300" src="https://assets.fedtop.com/picbed/vue-super.png" alt="vue-super-admin">
   </a>
 </p>
 
@@ -16,6 +15,7 @@
 代码质量校验与代码风格校验: Eslint, Prettier, Stylelint  
 git 提交信息校验: Commitlint
 
-在线地址: https://vue-super.vercel.app/
+github：https://github.com/wangrongding  
+在线预览: https://vue-super-admin.vercel.app
 
 [框架模板搭建过程记录](./RECORD.md)
