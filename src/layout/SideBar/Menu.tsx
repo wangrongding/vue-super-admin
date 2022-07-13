@@ -45,7 +45,7 @@ export default defineComponent({
               title: () => item.meta.title,
             }}
           >
-            <DIcon icon={item.meta.icon} />
+            {item.meta.icon && <DIcon icon={item.meta.icon} />}
             {/* <i-ep-expand /> */}
             {/* {item.meta.title} */}
           </el-menu-item>
@@ -58,7 +58,14 @@ export default defineComponent({
           show-timeout={50}
           popper-offset={0}
           v-slots={{
-            title: () => item.meta.title,
+            title: () => {
+              return (
+                <>
+                  {item.meta.icon && <DIcon icon={item.meta.icon} />}
+                  <span>{item.meta.title}</span>
+                </>
+              )
+            },
           }}
         >
           {item.children.map((child: RouteRecordRaw) => createMenuItem(child))}
