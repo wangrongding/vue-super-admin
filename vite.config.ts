@@ -17,10 +17,6 @@ export default defineConfig((config) => ({
     Icons({
       compiler: 'vue3',
     }),
-    Icons({
-      jsx: 'react',
-      compiler: 'jsx',
-    }),
     // Api自动导入
     AutoImport({
       // 目标文件
@@ -39,12 +35,6 @@ export default defineConfig((config) => ({
         // 自动导入必须遵循名称格式 {prefix：默认为i}-{collection：图标集合的名称}-{icon：图标名称}
         // IconsResolver(),
         IconsResolver({
-          prefix: 'i',
-          enabledCollections: ['ep'],
-          extension: 'tsx',
-        }),
-        IconsResolver({
-          prefix: 'i',
           enabledCollections: ['ep'],
           extension: 'vue',
         }),
@@ -59,16 +49,16 @@ export default defineConfig((config) => ({
     // 按需导入组件
     Components({
       dts: true, // enabled by default if `typescript` is installed
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/,
+        /\.vue\?vue/, // .vue
+        /\.md$/, // .md
+      ],
       resolvers: [
         // 自动注册图标组件
         IconsResolver({
-          prefix: 'i',
           extension: 'vue',
-          enabledCollections: ['ep'],
-        }),
-        IconsResolver({
-          prefix: 'i',
-          extension: 'tsx',
           enabledCollections: ['ep'],
         }),
         // 自动导入 Element Plus 组件
