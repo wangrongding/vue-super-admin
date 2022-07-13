@@ -2,7 +2,6 @@
   "name": "vue-boot",
   "private": true,
   "version": "0.0.1",
-  "packageManager": "pnpm@7.2.1",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -13,7 +12,9 @@
     "stylelint": "stylelint \"src/**/*.*\" --fix",
     "stylelint-check": "stylelint-config-prettier-check",
     "fal": "npm run format && npm run stylelint && npm run lint",
-    "cz": "cz"
+    "cz": "cz",
+    "prepare": "husky install",
+    "preinstall": "npx npm-limit yarn"
   },
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx,css,sass,scss,json,md}": [
@@ -39,6 +40,7 @@
     "@commitlint/cli": "^16.2.4",
     "@commitlint/config-conventional": "^16.2.4",
     "@iconify/json": "^2.1.74",
+    "@iconify/vue": "^3.2.1",
     "@types/node": "^17.0.42",
     "@types/nprogress": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^5.22.0",

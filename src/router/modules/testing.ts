@@ -4,12 +4,12 @@ export const testing: RouteRecordRaw[] = [
   {
     path: '/testing',
     component: () => import('@/page/testing/index.vue'),
-    meta: { title: '测试', type: 'single', icon: 'House' },
+    meta: { title: '测试', type: 'single', icon: 'Bowl' },
     children: [
       {
         path: '/testing/detail',
         component: () => import('@/page/testing/index.vue'),
-        meta: { title: '测试详情', type: 'single', icon: 'House' },
+        meta: { title: '测试详情', type: 'single' },
       },
     ],
   },

@@ -24,7 +24,6 @@ export default defineConfig((config) => ({
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue$/,
         /\.vue\?vue/, // .vue
-        /\.md$/, // .md
       ],
       // 全局引入插件
       imports: ['vue', 'vue-router'],
@@ -53,7 +52,6 @@ export default defineConfig((config) => ({
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue$/,
         /\.vue\?vue/, // .vue
-        /\.md$/, // .md
       ],
       resolvers: [
         // 自动注册图标组件

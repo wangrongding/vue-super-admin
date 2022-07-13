@@ -2,6 +2,8 @@ import { RouteRecordRaw, useRoute } from 'vue-router'
 import { routerList } from '@/router/index.ts'
 import { getParentPaths } from '@/router/utils.ts'
 import './Menu.scss'
+import DIcon from '@/components/D-icon.vue'
+
 // import styles from '@/styles/variable.scss'
 
 export default defineComponent({
@@ -39,11 +41,13 @@ export default defineComponent({
             disabled={item.disabled}
             selected={item.selected}
             divided={item.divided}
+            v-slots={{
+              title: () => item.meta.title,
+            }}
           >
-            {/* <el-icon color='#00000080' size='20'>
-            </el-icon> */}
-            <i-ep-expand />
-            {item.meta.title}
+            <DIcon icon={item.meta.icon} />
+            {/* <i-ep-expand /> */}
+            {/* {item.meta.title} */}
           </el-menu-item>
         )
       }
@@ -76,6 +80,8 @@ export default defineComponent({
         <el-menu
           // mode='horizontal'
           collapse={props.isCollapse}
+          class='el-menu-vertical'
+          collapse-transition={false}
           background-color='transparent'
           menu-trigger='hover'
           text-color='#000000'

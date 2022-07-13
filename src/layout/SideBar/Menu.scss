@@ -1,3 +1,8 @@
 .el-menu {
   border: none;
 }
+/* stylelint-disable-next-line */
+.el-menu-vertical:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}

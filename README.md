@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/wangrongding" target="_blank" rel="noopener noreferrer">
-    <img width="300" src="https://assets.fedtop.com/picbed/vue-super.png" alt="vue-super-admin">
+    <img width="300" src="https://assets.fedtop.com/picbed/logo.png" alt="vue-super-admin">
   </a>
 </p>
 
