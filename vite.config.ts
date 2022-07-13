@@ -5,7 +5,7 @@ import * as path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-
+import Inspect from 'vite-plugin-inspect'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 // https://vitejs.dev/config/
@@ -75,6 +75,7 @@ export default defineConfig((config) => ({
         ElementPlusResolver(),
       ],
     }),
+    Inspect(),
   ],
   // 服务器特定选项，如主机、端口、https…
   server: {
