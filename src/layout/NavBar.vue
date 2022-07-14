@@ -18,15 +18,27 @@ function logout() {
   <div class="nav-bar-container">
     <div class="nav-left"></div>
     <div class="nav-right">
-      <el-avatar
-        src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-        cover
-      />
-      <p class="user-name">super-admin</p>
-      <div class="logout-btn" @click="logout">
-        <i-material-symbols-logout />
-        <span>退出</span>
-      </div>
+      <el-dropdown size="default">
+        <div class="user-operation-bar">
+          <el-avatar
+            src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+            cover
+          />
+          <p class="user-name">super-admin</p>
+        </div>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item divided>
+              <i-wpf-password1 />
+              <span>修改密码</span>
+            </el-dropdown-item>
+            <el-dropdown-item divided @click="logout">
+              <i-material-symbols-logout />
+              <span>退出</span>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -63,12 +75,9 @@ function logout() {
     align-items: center;
     cursor: pointer;
 
-    .logout-btn {
-      margin-left: 20px;
-      width: 60px;
+    .user-operation-bar {
       display: flex;
       align-items: center;
-      justify-content: space-around;
     }
   }
 }

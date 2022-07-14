@@ -17,7 +17,7 @@
     "preinstall": "npx npm-limit yarn"
   },
   "lint-staged": {
-    "*.{vue,js,ts,jsx,tsx,css,sass,scss,json,md}": [
+    "*.{vue,js,ts,jsx,tsx,css,sass,scss,md}": [
       "prettier --write"
     ],
     "*.{vue,css,sass,scss}": [

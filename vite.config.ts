@@ -17,6 +17,7 @@ export default defineConfig((config) => ({
     Icons({
       // autoInstall: true,
       compiler: 'vue3',
+      defaultStyle: 'font-size: 16px;',
     }),
     // Api自动导入
     AutoImport({
@@ -68,7 +69,7 @@ export default defineConfig((config) => ({
   // 服务器特定选项，如主机、端口、https…
   server: {
     host: '0.0.0.0',
-    port: 9423,
+    port: 9421,
     open: false,
     proxy: {
       '/api': {

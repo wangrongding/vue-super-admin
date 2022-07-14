@@ -35,6 +35,7 @@ defineProps({
   }
 
   .logo-title {
+    margin-left: 10px;
     color: #47ba80;
     font-weight: bolder;
     font-size: 20px;
