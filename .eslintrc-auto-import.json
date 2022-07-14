@@ -9,6 +9,7 @@
     "EffectScope": true,
     "ElMenu": true,
     "ElMenuItem": true,
+    "ElMessageBox": true,
     "ElSubMenu": true,
     "getCurrentInstance": true,
     "getCurrentScope": true,

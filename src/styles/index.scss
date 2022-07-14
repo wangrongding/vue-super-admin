@@ -7,3 +7,23 @@
 @import './transition';
 
 // 公共样式
+
+// 整个滚动条
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+// 滚动条上的滚动滑块
+::-webkit-scrollbar-thumb {
+  background-color: #47ba80;
+  border-radius: 6px;
+
+  &:hover {
+    background-color: #68f2ad;
+  }
+}
+
+// 滚动条上的按钮
+::-webkit-scrollbar-button {
+  display: none;
+}

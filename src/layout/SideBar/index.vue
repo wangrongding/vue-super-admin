@@ -17,7 +17,9 @@ function handleCollapseClick() {
 <template>
   <div class="sidebar-container">
     <Logo :is-collapse="isCollapse" />
-    <Menu :is-collapse="isCollapse" />
+    <el-scrollbar max-height="100%">
+      <Menu :is-collapse="isCollapse" />
+    </el-scrollbar>
     <div class="collapse-button" @click="handleCollapseClick">
       <DIcon v-if="isCollapse" :size="24" :icon="'Expand'" />
       <DIcon v-else :size="24" :icon="'Fold'" />

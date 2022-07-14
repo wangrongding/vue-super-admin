@@ -535,3 +535,78 @@ export default {
 ```
 
 ### 支持 TSX
+
+安装`@vitejs/plugin-vue-jsx`, 并在 Vite.config.ts 中添加如下配置
+
+```typescript
+// vite.config.ts
+import vueJsx from '@vitejs/plugin-vue-jsx'
+
+export default {
+  plugins: [
+    // ...
+    vueJsx(),
+  ],
+}
+```
+
+### 图标按需自动引入
+
+安装`unplugin-icons`, 并在 Vite.config.ts 中添加如下配置
+
+```typescript
+// vite.config.ts
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+
+export default {
+  plugins: [
+    // ...
+    Icons({
+      compiler: 'vue3',
+    }),
+    // Api自动导入
+    AutoImport({
+      // 目标文件
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/,
+        /\.vue\?vue/, // .vue
+      ],
+      resolvers: [
+        // 自动导入图标组件
+        // 自动导入必须遵循名称格式 {prefix：默认为i}-{collection：图标集合的名称}-{icon：图标名称}
+        // IconsResolver(),
+        IconsResolver({
+          // enabledCollections: ['ep'],
+          extension: 'vue',
+        }),
+      ],
+      // eslint报错解决方案
+      eslintrc: {
+        enabled: true, // Default `false`
+        filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+        globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+      },
+    }),
+    // 按需导入组件
+    Components({
+      dts: true, // enabled by default if `typescript` is installed
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/,
+        /\.vue\?vue/, // .vue
+      ],
+      resolvers: [
+        // 自动注册图标组件
+        IconsResolver({
+          extension: 'vue',
+          // enabledCollections: ['ep'],
+        }),
+      ],
+    }),
+  ],
+}
+```

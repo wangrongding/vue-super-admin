@@ -15,6 +15,7 @@ export default defineConfig((config) => ({
     vue(),
     vueJsx(),
     Icons({
+      // autoInstall: true,
       compiler: 'vue3',
     }),
     // Api自动导入
@@ -32,9 +33,8 @@ export default defineConfig((config) => ({
         ElementPlusResolver(),
         // 自动导入图标组件
         // 自动导入必须遵循名称格式 {prefix：默认为i}-{collection：图标集合的名称}-{icon：图标名称}
-        // IconsResolver(),
         IconsResolver({
-          enabledCollections: ['ep'],
+          // enabledCollections: ['ep'],
           extension: 'vue',
         }),
       ],
@@ -57,7 +57,7 @@ export default defineConfig((config) => ({
         // 自动注册图标组件
         IconsResolver({
           extension: 'vue',
-          enabledCollections: ['ep'],
+          // enabledCollections: ['ep'],
         }),
         // 自动导入 Element Plus 组件
         ElementPlusResolver(),

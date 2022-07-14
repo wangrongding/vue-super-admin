@@ -12,9 +12,11 @@ defineProps({
 })
 </script>
 <template>
-  <router-link class="logo-link" to="/">
-    <img :src="logo" class="logo-img" />
-    <h1 v-if="!isCollapse" class="logo-title">{{ title }}</h1>
+  <router-link to="/">
+    <div class="logo-link">
+      <img :src="logo" class="logo-img" />
+      <h1 v-if="!isCollapse" class="logo-title">{{ title }}</h1>
+    </div>
   </router-link>
 </template>
 <style lang="scss" scoped>
