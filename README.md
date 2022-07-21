@@ -1,4 +1,4 @@
-# Vue-Super
+# Vue-Super-Admin
 
 <p align="center">
   <a href="https://github.com/wangrongding" target="_blank" rel="noopener noreferrer">
@@ -6,7 +6,8 @@
   </a>
 </p>
 
-> 一个适用于`个人` 及 `团队协同开发`的 vue3 项目模板。
+> 麻雀虽小，五脏俱全。  
+> 一个开袋即食，适用于`个人` 及 `团队协同开发`的 vue3 项目模板。
 
 ## 技术栈
 
@@ -24,3 +25,8 @@ github：https://github.com/wangrongding
 在线预览: https://vue-super-admin.vercel.app
 
 [框架模板搭建过程记录](./RECORD.md)
+
+## 精简版本
+
+一个开袋即食的 vue3 项目模板。  
+[Vue-Super](https://github.com/wangrongding/vue-super)
