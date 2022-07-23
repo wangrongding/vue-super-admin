@@ -7,6 +7,13 @@
   // stylelint 需要检查的文件
   "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass"],
   "editor.formatOnSave": false,
-  "cSpell.words": ["Commitlint", "iconify", "nprogress", "Stylelint", "Vite"]
+  "cSpell.words": [
+    "Commitlint",
+    "iconify",
+    "nprogress",
+    "Stylelint",
+    "Vite",
+    "unplugin"
+  ]
   // "prettier.enable": false
 }

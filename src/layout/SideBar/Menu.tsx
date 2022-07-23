@@ -2,7 +2,7 @@ import { RouteRecordRaw, useRoute } from 'vue-router'
 import { routerList } from '@/router/index.ts'
 import { getParentPaths } from '@/router/utils.ts'
 import './Menu.scss'
-import DIcon from '@/components/D-icon.vue'
+import BaseIcon from '@/components/BaseIcon/index.vue'
 
 // import styles from '@/styles/variable.scss'
 
@@ -45,7 +45,7 @@ export default defineComponent({
               title: () => item.meta.title,
             }}
           >
-            {item.meta.icon && <DIcon icon={item.meta.icon} />}
+            {item.meta.icon && <BaseIcon icon={item.meta.icon} />}
             {/* <i-ep-expand /> */}
             {/* {item.meta.title} */}
           </el-menu-item>
@@ -61,7 +61,7 @@ export default defineComponent({
             title: () => {
               return (
                 <>
-                  {item.meta.icon && <DIcon icon={item.meta.icon} />}
+                  {item.meta.icon && <BaseIcon icon={item.meta.icon} />}
                   <span>{item.meta.title}</span>
                 </>
               )
