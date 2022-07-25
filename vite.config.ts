@@ -8,12 +8,18 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Inspect from 'vite-plugin-inspect'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // https://vitejs.dev/config/
 
 export default defineConfig((config) => ({
   plugins: [
     vue(),
-    vueJsx(),
+    vueJsx(), // 引入 svg
+    createSvgIconsPlugin({
+      // Specify the icon folder to be cached
+      iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')], // 所有的 svg的文件都存放在该文件夹下
+      symbolId: 'icon-[name]',
+    }),
     Icons({
       // autoInstall: true,
       compiler: 'vue3',
@@ -21,6 +27,7 @@ export default defineConfig((config) => ({
     }),
     // Api自动导入
     AutoImport({
+      dts: true,
       // 目标文件
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx

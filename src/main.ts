@@ -8,6 +8,8 @@ import '@/router/permission.ts'
 
 // 公共样式
 import '@/styles/index.scss'
+// svg图标
+import 'virtual:svg-icons-register'
 
 const app = createApp(App)
 // 全局挂载所有图标

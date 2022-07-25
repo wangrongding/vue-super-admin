@@ -43,6 +43,7 @@ onMounted(() => {
     flex: 1;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 
     // 内容区域
     .main {
