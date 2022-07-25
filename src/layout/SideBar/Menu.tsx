@@ -2,7 +2,6 @@ import { RouteRecordRaw, useRoute } from 'vue-router'
 import { routerList } from '@/router/index.ts'
 import { getParentPaths } from '@/router/utils.ts'
 import './Menu.scss'
-import BaseIcon from '@/components/BaseIcon/index.vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
 // import styles from '@/styles/variable.scss'
