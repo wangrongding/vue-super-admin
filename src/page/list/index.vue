@@ -11,37 +11,14 @@ const tableParams = reactive({
     {
       id: '12987122',
       name: 'Tom',
-      amount1: '234',
-      amount2: '3.2',
-      amount3: 10,
     },
     {
       id: '12987122',
       name: 'Tom',
-      amount1: '234',
-      amount2: '3.2',
-      amount3: 10,
     },
     {
       id: '12987122',
       name: 'Tom',
-      amount1: '234',
-      amount2: '3.2',
-      amount3: 10,
-    },
-    {
-      id: '12987122',
-      name: 'Tom',
-      amount1: '234',
-      amount2: '3.2',
-      amount3: 10,
-    },
-    {
-      id: '12987122',
-      name: 'Tom',
-      amount1: '234',
-      amount2: '3.2',
-      amount3: 10,
     },
   ] as any[],
   loading: false,
@@ -107,7 +84,7 @@ function toDetail(row) {
         </el-button>
       </template>
     </Table>
-    <svg-icon icon-name="test-icon" color="#000" prefix="icon" />
+    <!-- <svg-icon icon-name="test-icon" color="#000" prefix="icon" /> -->
   </div>
 </template>
 <style lang="scss" scoped>

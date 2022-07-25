@@ -3,6 +3,7 @@ import { routerList } from '@/router/index.ts'
 import { getParentPaths } from '@/router/utils.ts'
 import './Menu.scss'
 import BaseIcon from '@/components/BaseIcon/index.vue'
+import SvgIcon from '@/components/SvgIcon/index.vue'
 
 // import styles from '@/styles/variable.scss'
 
@@ -45,7 +46,9 @@ export default defineComponent({
               title: () => item.meta.title,
             }}
           >
-            {item.meta.icon && <BaseIcon icon={item.meta.icon} />}
+            {item.meta.icon && (
+              <SvgIcon iconName={item.meta.icon} color={'#fff'} />
+            )}
             {/* <i-ep-expand /> */}
             {/* {item.meta.title} */}
           </el-menu-item>
@@ -61,7 +64,9 @@ export default defineComponent({
             title: () => {
               return (
                 <>
-                  {item.meta.icon && <BaseIcon icon={item.meta.icon} />}
+                  {item.meta.icon && (
+                    <SvgIcon iconName={item.meta.icon} color={'#fff'} />
+                  )}
                   <span>{item.meta.title}</span>
                 </>
               )

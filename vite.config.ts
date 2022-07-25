@@ -27,6 +27,7 @@ export default defineConfig((config) => ({
     }),
     // Api自动导入
     AutoImport({
+      dts: true,
       // 目标文件
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
