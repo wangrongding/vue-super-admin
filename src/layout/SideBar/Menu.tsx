@@ -33,6 +33,7 @@ export default defineComponent({
 
     // 创建菜单
     function createMenuItem(item: any) {
+      if (item.meta.hidden) return null
       if (!item.meta.type || item.meta.type === 'single') {
         return (
           <el-menu-item
