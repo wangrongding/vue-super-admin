@@ -30,7 +30,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.6",
     "axios": "^0.27.2",
-    "element-plus": "2.2.8",
+    "element-plus": "2.2.9",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.14",
     "vue": "^3.2.31",
