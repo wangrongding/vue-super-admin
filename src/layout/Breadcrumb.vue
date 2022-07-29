@@ -5,9 +5,12 @@ import { useRoute, RouteRecordRaw, RouteLocationMatched } from 'vue-router'
 import { routerList } from '@/router/index.ts'
 import { getParentPaths } from '@/router/utils.ts'
 
+const router = useRouter()
+const route = useRoute()
 // 定义面包屑导航数据
 const tabs: Ref<RouteRecordRaw[]> = ref([])
-const route = useRoute()
+
+// 获取面包屑导航数据
 const getBreadcrumb = () => {
   // 获取所有有meta和title
   const matched = route.matched.filter((item) => item.meta && item.meta.title)
@@ -19,20 +22,39 @@ const getBreadcrumb = () => {
 // 路由发生变化，重新获取面包屑导航数据
 watch(
   () => route.path,
-  () => getBreadcrumb(),
+  (newRoute, oldRoute) => getBreadcrumb(),
 )
 getBreadcrumb()
+
+function toTarget(route: RouteRecordRaw): void {
+  if (route.meta!.type === 'single') {
+    router.push(route.path)
+  }
+}
 </script>
 
 <template>
   <div class="breadcrumb-container">
     <el-breadcrumb :separator-icon="ArrowRight">
-      <el-breadcrumb-item
-        v-for="item in tabs"
-        :key="item.path"
-        :to="{ path: item.path }"
-      >
-        {{ item.meta!.title }}
+      <el-breadcrumb-item v-for="(item, index) in tabs" :key="item.path">
+        <a
+          v-if="item.meta!.type === 'single' && index < tabs.length"
+          @click.prevent="toTarget(item)"
+        >
+          {{ item.meta!.title }}
+        </a>
+        <span
+          v-else
+          :style="{
+            fontWeight: index === 0 ? 'bold' : 'normal',
+            color:
+              index === 0
+                ? 'var(--el-text-color-primary)'
+                : 'var(--el-text-color-regular)',
+          }"
+        >
+          {{ item.meta!.title }}
+        </span>
       </el-breadcrumb-item>
     </el-breadcrumb>
   </div>

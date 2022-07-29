@@ -1,11 +1,12 @@
-import { RouteRecordRaw, Router } from 'vue-router'
-// import { cloneDeep } from 'lodash'
+import { RouteRecordRaw } from 'vue-router'
 /**
  * 将多级嵌套路由处理成一维数组
  * @param routesList 传入路由
  * @returns 返回处理后的一维路由
  */
-export function formatFlatteningRoutes(routesList: RouteRecordRaw[]) {
+export function formatFlatteningRoutes(
+  routesList: RouteRecordRaw[],
+): RouteRecordRaw[] {
   const list = routesList.map((r) => {
     return { ...r }
   })
@@ -30,7 +31,10 @@ export function formatFlatteningRoutes(routesList: RouteRecordRaw[]) {
  * @param routes 路由列表
  * @returns 返回处理后的一维路由
  */
-export function getParentPaths(path: string, routes: RouteRecordRaw[]) {
+export function getParentPaths(
+  path: string,
+  routes: RouteRecordRaw[],
+): RouteRecordRaw[] {
   // 深度遍历查找（deep first search）
   function dfs(
     routes: RouteRecordRaw[],
