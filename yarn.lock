@@ -5615,6 +5615,11 @@ vite-plugin-svg-icons@^2.0.1:
     svg-baker "1.7.0"
     svgo "^2.8.0"
 
+vite-plugin-vue-type-imports@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npmmirror.com/vite-plugin-vue-type-imports/-/vite-plugin-vue-type-imports-0.2.0.tgz#bf2925ad730aa9f658c1f4b447bce12a6f641152"
+  integrity sha512-6rukBj1MP27WfsY5gqMZJg/Z8whK7f9oLbpICBDwzwOK2Oj7KkbP7IgFc2p3qInuB51SvUuxIIcJQVoUPaW6Nw==
+
 vite@^2.9.1:
   version "2.9.14"
   resolved "https://registry.npmmirror.com/vite/-/vite-2.9.14.tgz#c438324c6594afd1050df3777da981dee988bb1b"
