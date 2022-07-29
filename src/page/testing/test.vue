@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // @ts-nocheck
-// delete this⬆️ comment to enable type checking
+// delete this ⬆️ comment and you can see the error
 import type { Test } from './type.ts'
 
 const props = defineProps<Test>()
