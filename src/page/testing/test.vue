@@ -1,11 +1,13 @@
 <script setup lang="ts">
-// @ts-nocheck
 // delete this ⬆️ comment and you can see the error
-import type { Test } from './type.ts'
+// import type { Test } from './type.ts'
+import { Test } from './type'
 
 const props = defineProps<Test>()
 const state = reactive({})
+
+type testA = typeof props.text
 </script>
 <template>
-  <div class="test-container"></div>
+  <div class="test-container">{{ text }}</div>
 </template>

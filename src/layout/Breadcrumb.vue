@@ -2,8 +2,8 @@
 import { ArrowRight } from '@element-plus/icons-vue'
 import { ref, watch, Ref } from 'vue'
 import { useRoute, RouteRecordRaw, RouteLocationMatched } from 'vue-router'
-import { routerList } from '@/router/index.ts'
-import { getParentPaths } from '@/router/utils.ts'
+import { routerList } from '@/router/index'
+import { getParentPaths } from '@/router/utils'
 
 const router = useRouter()
 const route = useRoute()
@@ -17,7 +17,7 @@ const getBreadcrumb = () => {
   // 获取父路由
   const parentRoutes = getParentPaths(route.path, routerList)
   // 设置面包屑导航数据
-  tabs.value = parentRoutes.concat(matched)
+  tabs.value = parentRoutes.concat(matched as RouteRecordRaw[])
 }
 // 路由发生变化，重新获取面包屑导航数据
 watch(

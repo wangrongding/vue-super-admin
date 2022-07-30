@@ -14,4 +14,8 @@ declare module '*.vue' {
   export default Component
 }
 
-declare module '*.ts'
+// declare module '*.js'
+// declare module '*.ts'
+// declare module '*.ts' {
+//   export { Test } from '@/page/testing/type.ts'
+// }

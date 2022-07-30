@@ -4,10 +4,10 @@ import {
   RouteRecordRaw,
   Router,
 } from 'vue-router'
-import { formatFlatteningRoutes } from './utils.ts'
-import { testing } from './modules/testing.ts'
-import { list } from './modules/list.ts'
-import { home } from './modules/home.ts'
+import { formatFlatteningRoutes } from './utils'
+import { testing } from './modules/testing'
+import { list } from './modules/list'
+import { home } from './modules/home'
 
 const Layout = () => import('@/layout/index.vue')
 

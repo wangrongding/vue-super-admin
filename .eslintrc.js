@@ -11,7 +11,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended', // vue3规范
     'prettier', // prettier规范,覆盖eslint格式配置,写在最后
-    '.eslintrc-auto-import.json',
+    '.eslintrc-auto-import.json', // unplugin-auto-import自动导入的api
   ],
   // 针对特定文件重写eslint规则
   overrides: [
@@ -50,5 +50,6 @@ module.exports = {
     'no-continue': 0, // 禁止使用continue
     'import/prefer-default-export': 0, // 禁止使用export default
     'no-shadow': 0, // 禁止变量声明时使用相同名字
+    'import/extensions': 0, // 使用文件扩展名
   },
 }

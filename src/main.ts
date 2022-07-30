@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
-import router from './router/index.ts'
-import pinia from './store/index.ts'
+import router from './router/index'
+import pinia from './store/index'
 import 'element-plus/dist/index.css'
-import '@/router/permission.ts'
+import '@/router/permission'
 
 // 公共样式
 import '@/styles/index.scss'
