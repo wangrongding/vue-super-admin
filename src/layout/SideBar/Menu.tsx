@@ -1,6 +1,6 @@
 import { RouteRecordRaw, useRoute } from 'vue-router'
-import { routerList } from '@/router/index.ts'
-import { getParentPaths } from '@/router/utils.ts'
+import { routerList } from '@/router/index'
+import { getParentPaths } from '@/router/utils'
 import './Menu.scss'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
@@ -23,12 +23,14 @@ export default defineComponent({
     const routers = routerList
     const route = useRoute()
     // 默认高亮的菜单
-    const defaultActive = ref('/home')
+    const defaultActive = ref('/')
+    // 父级路径
+    const parentRoutes = ref<RouteRecordRaw>()
     // 获取激活的菜单
     function getDefaultActive() {
-      // 当前路由的父级路径
-      const parentRoutes = getParentPaths(route.path, routerList)[0]
-      defaultActive.value = parentRoutes?.path || route.path
+      // 当前路由的最顶级父路由
+      parentRoutes.value = getParentPaths(route.path, routerList)[0]
+      defaultActive.value = route.path || (parentRoutes.value?.path as string)
     }
 
     // 创建菜单
@@ -80,11 +82,11 @@ export default defineComponent({
 
     // 监听路由变化
     watch(
-      () => route.path,
+      () => route,
       () => {
         getDefaultActive()
       },
-      { immediate: true },
+      { immediate: true, deep: true },
     )
 
     return () => (
@@ -96,6 +98,7 @@ export default defineComponent({
           collapse-transition={false}
           background-color='transparent'
           menu-trigger='hover'
+          default-openeds={[parentRoutes.value?.path]}
           text-color='#000000'
           default-active={defaultActive.value}
           unique-opened={true}
