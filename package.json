@@ -14,7 +14,7 @@
     "fal": "npm run format && npm run stylelint && npm run lint",
     "cz": "cz",
     "prepare": "husky install",
-    "preinstall": "npx npm-limit yarn"
+    "preinstall": "npx npm-limit pnpm"
   },
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx,css,sass,scss,md}": [

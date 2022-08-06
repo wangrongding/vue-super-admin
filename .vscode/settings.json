@@ -11,9 +11,10 @@
     "Commitlint",
     "iconify",
     "nprogress",
+    "pnpm",
     "Stylelint",
-    "Vite",
-    "unplugin"
+    "unplugin",
+    "Vite"
   ],
   "typescript.tsdk": "node_modules/typescript/lib"
   // "prettier.enable": false
