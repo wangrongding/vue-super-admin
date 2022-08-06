@@ -1,26 +1,29 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
+    "target": "esnext", // 编译后的代码类型
+    "removeComments": true, // 删除注释
+    "useDefineForClassFields": true, // 类的字段使用 define 来定义
+    "module": "esnext", // 模块类型
+    "moduleResolution": "node", // 模块解析器
+    "strict": true, // 严格模式
+    "jsx": "preserve", // jsx 编译方式
     // "jsx": "react-jsx",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom", "dom.iterable"],
-    "allowJs": true,
-    "noImplicitAny": false,
-    "skipLibCheck": true,
-    "baseUrl": ".",
+    "sourceMap": true, // 源码映射
+    "resolveJsonModule": true, // 解析 json 文件
+    "isolatedModules": true, // 单文件模块
+    "esModuleInterop": true, // es6 模块化
+    "lib": ["esnext", "dom", "dom.iterable"], // 包含的库
+    "allowJs": true, // 允许使用 js
+    "noImplicitAny": false, // 不允许隐式any
+    "skipLibCheck": true, // 跳过库检查
+    "baseUrl": ".", // 基础路径
+    // 路径映射
     "paths": {
       // "@": ["./src"],
       "@/*": ["src/*"]
     }
   },
+  // 包含的文件
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
@@ -30,6 +33,6 @@
     "components.d.ts", // 自动注册的组件
     "auto-imports.d.ts" // 自动导入的api
   ],
-  "exclude": ["node_modules", "dist", "**/*.js"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "exclude": ["node_modules", "dist", "**/*.js"], // 排除的文件
+  "references": [{ "path": "./tsconfig.node.json" }] // 引用的配置文件
 }

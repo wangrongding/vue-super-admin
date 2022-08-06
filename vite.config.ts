@@ -14,7 +14,11 @@ import VueTypeImports from 'vite-plugin-vue-type-imports'
 
 export default defineConfig((config) => ({
   plugins: [
-    vue(),
+    vue({
+      // 开启响应式语法糖
+      reactivityTransform: true,
+    }),
+    // TODO vue3.3的时候去除，3.2目前不支持definedProp使用引入的Type。⬇️
     VueTypeImports(),
     vueJsx(), // 引入 svg
     createSvgIconsPlugin({

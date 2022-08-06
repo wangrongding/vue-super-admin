@@ -3,6 +3,7 @@ import NavBar from '@/layout/NavBar.vue'
 import SideBar from '@/layout/SideBar/index.vue'
 import Breadcrumb from '@/layout/Breadcrumb.vue'
 
+const route = useRoute()
 onMounted(() => {
   // // 禁止右键菜单
   // document.oncontextmenu = () => false
@@ -25,7 +26,7 @@ onMounted(() => {
         <!-- <Transition name="fade" mode="out-in" appear>
           <router-view />
         </Transition> -->
-        <router-view />
+        <router-view :key="route.path" />
       </div>
     </div>
   </div>

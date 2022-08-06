@@ -610,3 +610,60 @@ export default {
   ],
 }
 ```
+
+## 自动注册，vite 项目中 SVG 图标组件
+
+安装插件
+
+```sh
+yarn add vite-plugin-svg-icons -D
+```
+
+引入并配置插件
+
+```typescript
+// vite.config.ts
+import * as path from 'path'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+
+// 引入 vue-type-imports 插件
+export default defineConfig((config) => ({
+  // ...
+  createSvgIconsPlugin({
+    iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')], // 所有的 svg的文件都存放在该文件夹下
+    symbolId: 'icon-[name]',
+  })，
+  // ...
+}))
+```
+
+main 文件中引入以下
+
+```typescript
+// main.ts
+
+// svg图标
+import 'virtual:svg-icons-register'
+```
+
+## 解决 vue3.2 <script setup> 中 definedProps 引入类型会导致错误的问题
+
+安装插件
+
+```sh
+yarn add vite-plugin-vue-type-imports -D
+```
+
+引入插件
+
+```typescript
+// vite.config.ts
+import VueTypeImports from 'vite-plugin-vue-type-imports'
+
+// 引入 vue-type-imports 插件
+export default defineConfig((config) => ({
+  // ...
+  plugins: [VueTypeImports()],
+  // ...
+}))
+```
