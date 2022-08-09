@@ -26,8 +26,8 @@ declare module '@vue/runtime-core' {
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SuperTable: typeof import('./src/components/SuperTable/index.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
-    Table: typeof import('./src/components/Table/index.vue')['default']
   }
 }
 

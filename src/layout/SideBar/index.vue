@@ -21,8 +21,8 @@ function handleCollapseClick() {
       <Menu :is-collapse="isCollapse" />
     </el-scrollbar>
     <div class="collapse-button" @click="handleCollapseClick">
-      <BaseIcon v-if="isCollapse" :size="24" :icon="'Expand'" />
-      <BaseIcon v-else :size="24" :icon="'Fold'" />
+      <SvgIcon v-if="isCollapse" icon-name="Expand" color="#aaa" />
+      <SvgIcon v-else icon-name="Fold" color="#aaa" />
     </div>
   </div>
 </template>

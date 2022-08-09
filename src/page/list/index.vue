@@ -72,7 +72,7 @@ function toDetail(row) {
 </script>
 <template>
   <div class="list-container">
-    <Table :table-params="tableParams">
+    <SuperTable :table-params="tableParams">
       <template #operation="{ row }">
         <el-button
           type="primary"
@@ -83,7 +83,7 @@ function toDetail(row) {
           查看报告
         </el-button>
       </template>
-    </Table>
+    </SuperTable>
     <!-- <svg-icon icon-name="test-icon" color="#000" prefix="icon" /> -->
   </div>
 </template>
