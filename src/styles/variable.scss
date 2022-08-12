@@ -1,10 +1,10 @@
 @charset "utf-8";
 
 // 共用变量
-$-text-color: #333;
+$-text-color: #fff;
 
 // 框架默认主题色
-$base-color-default: #00e0b4;
+$base-color-default: #47ba80;
 $base-color-blue: #209bff;
 $base-color-green: #47ba80;
 $base-color-white: #fff;
@@ -15,13 +15,13 @@ $base-color-red: #f34d37;
 $base-color-gray: rgb(0 0 0 / 65%);
 
 // 默认body背景色
-$base-app-container-bg-color: #f5f7fa;
+$base-app-container-bg-color: #21252b;
 
 // 顶部导航颜色
-$base-navbar-bg-color: #fff;
+$base-navbar-bg-color: #282c34;
 
 // 侧边栏颜色
-$base-sidebar-bg-color: #fff;
+$base-sidebar-bg-color: #282c34;
 
 // 滚轮颜色
 $base-scroll-color: $base-color-default;

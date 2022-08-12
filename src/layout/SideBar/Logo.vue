@@ -31,7 +31,8 @@ defineProps({
 
   .logo-img {
     width: 40px;
-    height: 40px;
+
+    // height: 40px;
   }
 
   .logo-title {

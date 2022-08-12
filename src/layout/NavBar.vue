@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
+// import avatar from '@/assets/avatar.png'
+import avatar from '@/assets/avatar.gif'
 
 const router = useRouter()
 const state = reactive({})
@@ -20,10 +22,7 @@ function logout() {
     <div class="nav-right">
       <el-dropdown size="default">
         <div class="user-operation-bar">
-          <el-avatar
-            src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-            cover
-          />
+          <el-avatar :src="avatar" cover />
           <p class="user-name">super-admin</p>
         </div>
         <template #dropdown>
@@ -78,6 +77,11 @@ function logout() {
     .user-operation-bar {
       display: flex;
       align-items: center;
+    }
+
+    .user-name {
+      margin-left: 10px;
+      color: $base-color-default;
     }
   }
 }

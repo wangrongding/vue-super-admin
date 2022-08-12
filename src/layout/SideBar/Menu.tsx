@@ -99,10 +99,10 @@ export default defineComponent({
           background-color='transparent'
           menu-trigger='hover'
           default-openeds={[parentRoutes.value?.path]}
-          text-color='#000000'
+          text-color='#fff'
           default-active={defaultActive.value}
           unique-opened={true}
-          active-text-color='#027AFF'
+          active-text-color='#47ba80'
           router={true}
         >
           {routers.map((item: RouteRecordRaw) => createMenuItem(item))}

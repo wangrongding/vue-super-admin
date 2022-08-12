@@ -52,7 +52,7 @@ onMounted(() => {
       padding: 20px;
       border-radius: 10px;
       position: relative;
-      background: #fff;
+      background: #282c34;
       overflow-y: auto;
       flex: 1;
     }

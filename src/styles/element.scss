@@ -32,23 +32,24 @@
 
 // element-plus颜色定制化
 :root {
-  --el-color-primary: #00e0b4;
+  --el-color-primary: #47ba80;
   --el-menu-hover-bg-color: #fff !important;
 }
 
 /* stylelint-disable-next-line */
 .el-button--primary {
-  $base-color-default: #00e0b4;
+  $base-color-default: #47ba80;
 
-  --el-button-background-color: #00e0b4;
+  --el-button-background-color: #47ba80;
   --el-button-font-color: #fff;
-  --el-button-border-color: #00e0b4;
-  --el-button-hover-color: rgb(0 255 208);
+  --el-button-border-color: #47ba80;
+  --el-button-hover-color: #2a7851;
   --el-button-active-font-color: #e6e6e6;
-  --el-button-active-background-color: #00e0b4;
-  --el-button-active-border-color: #00e0b4;
+  --el-button-active-background-color: #47ba80;
+  --el-button-active-border-color: #47ba80;
 }
 
 .el-menu-item.is-active {
-  background-color: #ecf5ff;
+  // background-color: #ecf5ff;
+  background-color: #21252b;
 }

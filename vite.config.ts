@@ -130,6 +130,13 @@ export default defineConfig((config) => ({
   },
   build: {
     outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          echarts: ['echarts'],
+        },
+      },
+    },
   },
   // 热更新时，清空控制台
   clearScreen: true,
