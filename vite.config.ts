@@ -1,3 +1,4 @@
+// https://vitejs.dev/config/
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -9,8 +10,8 @@ import Inspect from 'vite-plugin-inspect'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import viteCompression from 'vite-plugin-compression'
 import VueTypeImports from 'vite-plugin-vue-type-imports'
-// https://vitejs.dev/config/
 
 export default defineConfig((config) => ({
   plugins: [
@@ -20,6 +21,7 @@ export default defineConfig((config) => ({
     }),
     // TODO vue3.3的时候去除，3.2目前不支持definedProp使用引入的Type。⬇️
     VueTypeImports(),
+    viteCompression(), // gzip压缩
     vueJsx(), // 引入 svg
     createSvgIconsPlugin({
       // Specify the icon folder to be cached
@@ -125,6 +127,9 @@ export default defineConfig((config) => ({
         },
       ],
     },
+  },
+  build: {
+    outDir: 'dist',
   },
   // 热更新时，清空控制台
   clearScreen: true,

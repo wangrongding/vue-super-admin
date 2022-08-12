@@ -11,6 +11,10 @@ import '@/styles/index.scss'
 // svg图标
 import 'virtual:svg-icons-register'
 
+// 所有图标的名称
+// import icons from 'virtual:svg-icons-names'
+// console.log('🚀🚀🚀 / icons', icons)
+
 const app = createApp(App)
 // 全局挂载所有图标
 Object.keys(ElementPlusIconsVue).forEach((key) => {
