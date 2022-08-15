@@ -93,11 +93,11 @@ function openGithub() {
   justify-content: space-around;
 
   h1 {
-    color: $-text-color;
+    color: $base-text-color;
     margin: 40px;
 
     a {
-      color: $-text-color;
+      color: $base-text-color;
     }
   }
 

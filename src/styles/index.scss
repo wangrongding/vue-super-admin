@@ -6,6 +6,8 @@
 // 动画
 @import './transition';
 
+@import './src/styles/variable';
+
 // 公共样式
 
 // 整个滚动条
@@ -26,4 +28,8 @@
 // 滚动条上的按钮
 ::-webkit-scrollbar-button {
   display: none;
+}
+
+body {
+  color: $base-text-color;
 }

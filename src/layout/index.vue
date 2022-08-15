@@ -54,7 +54,8 @@ onMounted(() => {
       position: relative;
       background: #282c34;
       overflow-y: auto;
-      flex: 1;
+
+      // flex: 1; // main区域占满右侧区域
     }
   }
 }

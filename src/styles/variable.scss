@@ -1,8 +1,5 @@
 @charset "utf-8";
 
-// 共用变量
-$-text-color: #fff;
-
 // 框架默认主题色
 $base-color-default: #47ba80;
 $base-color-blue: #209bff;
@@ -14,8 +11,11 @@ $base-color-orange: #ff6700;
 $base-color-red: #f34d37;
 $base-color-gray: rgb(0 0 0 / 65%);
 
+// 共用变量
+$base-text-color: $base-color-white;
+
 // 默认body背景色
-$base-app-container-bg-color: #21252b;
+$base-app-container-bg-color: #1d1f23;
 
 // 顶部导航颜色
 $base-navbar-bg-color: #282c34;

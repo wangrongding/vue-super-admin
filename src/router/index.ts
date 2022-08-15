@@ -31,6 +31,7 @@ export const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'login',
     component: () => import('@/page/login/index.vue'),
+    meta: { title: '登陆' },
   },
   // 404页面
   {

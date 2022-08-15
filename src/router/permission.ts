@@ -6,6 +6,7 @@ import type {
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import router from '@/router/index'
+import { name } from '../../package.json'
 
 export interface toRouteType extends RouteLocationNormalized {
   meta: {
@@ -42,7 +43,7 @@ router.beforeEach((async (
   // console.log('🚀🚀🚀 / to', to)
   NProgress.start()
   next()
-  window.document.title = to.meta.title
+  window.document.title = `${name} | ${to.meta.title}`
 }) as NavigationGuardWithThis<undefined>)
 
 router.afterEach(async () => {
