@@ -13,6 +13,9 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import viteCompression from 'vite-plugin-compression'
 import VueTypeImports from 'vite-plugin-vue-type-imports'
 
+import OptimizationPersist from 'vite-plugin-optimize-persist'
+import PkgConfig from 'vite-plugin-package-config'
+
 export default defineConfig((config) => ({
   plugins: [
     vue({
@@ -22,10 +25,16 @@ export default defineConfig((config) => ({
     // TODO vue3.3的时候去除，3.2目前不支持definedProp使用引入的Type。⬇️
     VueTypeImports(),
     viteCompression(), // gzip压缩
-    vueJsx(), // 引入 svg
+    // 从你的package.json vite领域扩展Vite配置。
+    PkgConfig(),
+    // 坚持动态分析的依赖关系优化
+    OptimizationPersist(),
+    // 引入 svg
+    vueJsx(),
     createSvgIconsPlugin({
       // Specify the icon folder to be cached
-      iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')], // 所有的 svg的文件都存放在该文件夹下
+      // 所有的 svg的文件都存放在该文件夹下
+      iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')],
       symbolId: 'icon-[name]',
     }),
     Icons({
@@ -43,7 +52,19 @@ export default defineConfig((config) => ({
         /\.vue\?vue/, // .vue
       ],
       // 全局引入插件
-      imports: ['vue', 'vue-router'],
+      imports: [
+        'vue',
+        'vue-router',
+        {
+          'element-plus': [
+            'ElMenuItem',
+            'ElSubMenu',
+            'ElMenu',
+            'ElMessage',
+            'ElMessageBox',
+          ],
+        },
+      ],
       resolvers: [
         // 自动导入Element-Plus的Api
         ElementPlusResolver(),
@@ -73,11 +94,12 @@ export default defineConfig((config) => ({
         // 自动注册图标组件
         IconsResolver({
           extension: 'vue',
-          // enabledCollections: ['ep'],
         }),
         // 自动导入 Element Plus 组件
         ElementPlusResolver(),
       ],
+      // 遍历子目录
+      deep: true,
     }),
     Inspect(),
   ],
@@ -86,6 +108,7 @@ export default defineConfig((config) => ({
     host: '0.0.0.0',
     port: 9421,
     open: false,
+    hmr: true,
     proxy: {
       '/api': {
         target: loadEnv(config.mode, process.cwd()).VITE_APP_BASE_API,
@@ -107,7 +130,7 @@ export default defineConfig((config) => ({
       scss: {
         // 给含有中文的scss文件添加 @charset:UTF-8;
         charset: false,
-        // 在全局中使用 index.scss中预定义的变量
+        // 在全局中使用 variable.scss中预定义的变量
         additionalData:
           '@import "./src/styles/variable.scss";@import "./src/styles/element.scss";',
       },
