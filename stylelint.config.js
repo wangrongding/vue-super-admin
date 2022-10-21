@@ -12,6 +12,24 @@ module.exports = {
     'color-hex-case': 'lower',
     'block-no-empty': null,
     'no-empty-source': null,
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['export'],
+      },
+    ],
+    'property-no-unknown': [
+      true,
+      {
+        ignoreSelectors: [':export'],
+      },
+    ],
+    'property-case': [
+      'lower',
+      {
+        ignoreSelectors: [':export'],
+      },
+    ],
   },
   ignoreFiles: [
     '**/*.js',
