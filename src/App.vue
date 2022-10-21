@@ -5,7 +5,7 @@
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 
 const zIndex = 3000
-const size: any = 'small'
+const size: any = 'default'
 </script>
 
 <template>

@@ -7,7 +7,7 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 // import styles from '@/styles/variable.scss'
 
 export default defineComponent({
-  name: 'Menu',
+  // name: 'Menu',
   components: {
     ElMenu,
     ElSubMenu,
@@ -30,7 +30,7 @@ export default defineComponent({
     function getDefaultActive() {
       // 当前路由的最顶级父路由
       parentRoutes.value = getParentPaths(route.path, routerList)[0]
-      defaultActive.value = route.path || (parentRoutes.value?.path as string)
+      defaultActive.value = (parentRoutes.value?.path as string) || route.path
     }
 
     // 创建菜单

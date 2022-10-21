@@ -33,8 +33,7 @@ $base-scroll-active-color: $base-color-default;
 $base-transition-time: 0.3s;
 
 // 表格头颜色
-
-/* stylelint-disable */
 :export {
   BaseNavBgColor: $base-navbar-bg-color;
+  base-navbar-bg-color: $base-navbar-bg-color;
 }

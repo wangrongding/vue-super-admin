@@ -9,7 +9,11 @@ export const useStore = defineStore('main', {
     // 所有这些属性都将自动推断其类型
     counter: 0,
     name: 'Eduardo',
-    isAdmin: true,
+    userInfo: {
+      userName: '',
+      token: '',
+      isAdmin: false,
+    },
   }),
   getters: {
     // getUserInfo: (state) => state.navigatorInfo,
