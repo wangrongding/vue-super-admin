@@ -8,6 +8,8 @@ import '@/router/permission'
 
 // 公共样式
 import '@/styles/index.scss'
+// tailwindcss
+import '@/styles/tailwind.css'
 // svg图标
 import 'virtual:svg-icons-register'
 

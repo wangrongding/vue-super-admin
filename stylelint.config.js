@@ -24,6 +24,22 @@ module.exports = {
         ignoreSelectors: [':export'],
       },
     ],
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: [
+          'tailwind',
+          'forward',
+          'function',
+          'if',
+          'each',
+          'include',
+          'mixin',
+          'for',
+        ],
+      },
+    ],
+    'scss/at-rule-no-unknown': null,
     'property-case': [
       'lower',
       {
@@ -41,6 +57,11 @@ module.exports = {
     '**/*.jpg',
     '**/*.jpeg',
     '**/*.svg',
+    '**/*.mp3',
+    '**/*.mp4',
+    '**/*.webm',
+    '**/*.woff',
+    '**/*.woff2',
     '**/*.ttf',
     '**/*.woff',
     '**/*.json',

@@ -2,10 +2,14 @@
 import { useStore } from '@/store/index'
 
 const store = useStore()
+const test = () => {
+  store.counter++
+  ElMessage.success('success')
+}
 </script>
 <template>
   <div class="page-container">
-    <el-button type="primary" size="default" @click="store.counter++">
+    <el-button type="primary" size="default" @click="test">
       changeCount: {{ store.counter }}
     </el-button>
     <router-link to="/" style="margin: 0 auto">go go go!</router-link>

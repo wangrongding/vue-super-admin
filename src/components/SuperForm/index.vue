@@ -1,30 +1,48 @@
 <script setup lang="ts">
-const props = defineProps({
-  formParams: {
-    type: Object,
-    default: () => {
-      return {
-        data: {}, // 表单数据对象
-        formList: [],
-        rules: {}, // 表单验证规则
-        inline: false, // 行内表单模式
-        labelPosition: 'left', // 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 label-width 可选值：right/left/top
-        labelWidth: '120px', // 表单域标签的宽度 支持 auto
-        labelSuffix: '', // 表单域标签的后缀
-        hideRequiredAsterisk: false, // 是否显示必填字段的标签旁边的红色星号
-        showMessage: false, // 是否显示校验错误信息
-        inlineMessage: false, // 是否以行内形式展示校验信息
-        statusIcon: false, // 是否在输入框中显示校验结果反馈图标
-        validateOnRuleChange: true, // 是否在 rules 属性改变后立即触发一次验证
-        size: '', // 用于控制该表单内组件的尺寸 可选值：medium / small / mini
-        disabled: false, // 是否禁用该表单内的所有组件
-        scrollToError: false, // 当校验失败时，滚动到第一个错误表单项
-      }
-    },
-    required: true,
-  },
-})
+export interface ItemForm {
+  type: string
+  label: string
+  placeholder: string
+  mode?: string
+  disabled?: boolean
+  style?: string
+  onChange?: () => void
+  [propName: string]: any
+}
+export interface Submit {
+  // submitFunction: () => void
+  submitFunction: any
+  cancelFunction: () => void
+  submitText?: string
+  submitDisabled?: boolean
+  submitIcon?: string
+  submitType?: string
+  submitStyle?: string
+  [propName: string]: any
+}
 
+export interface FormOptions {
+  data: any // 表单数据对象
+  formList: { [propName: string]: ItemForm }
+  rules?: object // 表单验证规则
+  inline?: boolean // 行内表单模式
+  labelWidth: string // 表单域标签的宽度('123px') 支持 auto
+  // loading: boolean
+  size?: string // 用于控制该表单内组件的尺寸 可选值：medium / small / mini
+  statusIcon?: boolean // 是否在输入框中显示校验结果反馈图标
+  validateOnRuleChange?: boolean // 是否在 rules 属性改变后立即触发一次验证
+  scrollToError?: boolean // 当校验失败时，滚动到第一个错误表单项
+  showMessage?: boolean // 是否显示校验错误信息
+  inlineMessage?: boolean // 是否以行内形式展示校验信息
+  disabled?: boolean // 是否禁用该表单内的所有组件
+  hideRequiredAsterisk?: boolean // 是否显示必填字段的标签旁边的红色星号
+  labelSuffix?: string // 表单域标签的后缀,''
+  labelPosition?: 'left' | 'right' // 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 label-width 可选值：right/left/top
+  align?: string
+  submit?: Submit // 提交表单的方法
+}
+
+const props = defineProps<{ formParams: FormOptions }>()
 const formParams = computed(() => props.formParams)
 
 const ruleFormRef = ref<any>()
@@ -45,12 +63,21 @@ function submitForm(submit: any) {
     }
   })
 }
+
+// function getOption(value: any, defaultValue: any) {
+//   return value === void 0 ? defaultValue : value;
+// }
+
+const formStyle = ref({
+  textAlign: formParams.value.align || 'left',
+  submitButton: formParams.value.align ? 'block' : 'inline-block',
+  formWidth: formParams.value.align ? '100%' : '',
+})
 </script>
 <template>
   <div class="form">
     <el-form
       ref="ruleFormRef"
-      v-loading="formParams.loading"
       :model="formParams.data"
       :rules="formParams.rules"
       :inline="formParams.inline"
@@ -99,6 +126,11 @@ function submitForm(submit: any) {
           :disabled="itemForm.disabled"
           :clearable="itemForm.clearable"
           :show-password="itemForm.isPassword"
+        />
+        <!-- 数字输入 -->
+        <el-input-number
+          v-if="itemForm.type === 'input-number'"
+          v-model="formParams.data[key]"
         />
         <!-- 日期 -->
         <el-date-picker
@@ -153,6 +185,23 @@ function submitForm(submit: any) {
             "
           />
         </el-select>
+        <!-- 级联 -->
+        <el-cascader
+          v-if="itemForm.type === 'cascader'"
+          v-model="formParams.data[key]"
+          :options="itemForm.cascaderOptions"
+          :disabled="itemForm.disabled"
+          :placeholder="itemForm.placeholder"
+          :style="`${itemForm.width ? 'width:' + itemForm.width : ''}`"
+          clearable
+          filterable
+          @change="itemForm.onChange"
+        />
+        <!-- 滑块 -->
+        <el-slider
+          v-if="itemForm.type === 'slider'"
+          v-model="formParams.data[key]"
+        />
         <!-- 开关 -->
         <el-switch
           v-if="itemForm.type === 'switch'"
@@ -163,80 +212,158 @@ function submitForm(submit: any) {
           :loading="itemForm.loading"
           @change="itemForm.onChange"
         />
+        <!-- 单选框 -->
+        <el-radio-group
+          v-if="itemForm.type === 'radio'"
+          v-model="formParams.data[key]"
+        >
+          <el-radio
+            v-for="(radioOption, index) in itemForm.radioOptions"
+            :key="index"
+            :label="radioOption.value"
+          >
+            {{ radioOption.text }}
+          </el-radio>
+        </el-radio-group>
+        <!-- 多选框 -->
+        <el-checkbox
+          v-if="itemForm.type === 'checkbox'"
+          v-model="formParams.data[key]"
+          :true-label="
+            itemForm.checkboxOption.trueLabel != undefined
+              ? itemForm.checkboxOption.trueLabel
+              : true
+          "
+          :false-label="
+            itemForm.checkboxOption.falseLabel != undefined
+              ? itemForm.checkboxOption.falseLabel
+              : false
+          "
+        >
+          {{
+            itemForm.checkboxOption.label
+              ? itemForm.checkboxOption.label
+              : itemForm.checkboxOption
+          }}
+        </el-checkbox>
+
+        <el-switch
+          v-if="itemForm.type === 'switch'"
+          v-model="formParams.data[key]"
+          :active-text="itemForm.activeText"
+          :inactive-text="itemForm.inactiveText"
+        />
+
+        <el-time-select
+          v-if="itemForm.type === 'time-select'"
+          v-model="formParams.data[key]"
+          :disabled="itemForm.disabled"
+          :placeholder="itemForm.placeholder"
+        />
+        <el-time-picker
+          v-if="itemForm.type === 'time-picker'"
+          v-model="formParams.data[key]"
+          :disabled="itemForm.disabled"
+          :placeholder="itemForm.placeholder"
+          start-placeholder="开始时间"
+          end-placeholder="结束时间"
+          :is-range="itemForm.isRange"
+          :value-format="itemForm.valueFormat || 'HH:mm:ss'"
+        />
+        <el-date-picker
+          v-if="itemForm.type === 'date-picker'"
+          v-model="formParams.data[key]"
+          :disabled="itemForm.disabled"
+          :placeholder="itemForm.placeholder"
+          :disabled-date="itemForm.disabledDate"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
+          :style="'width:100%'"
+          :type="itemForm.mode"
+          :value-format="itemForm.valueFormat || 'YYYY-MM-DD'"
+          :default-time="itemForm.defaultTime"
+          @change="itemForm.onChange"
+        />
+        <el-rate
+          v-if="itemForm.type === 'rate'"
+          v-model="formParams.data[key]"
+        />
+        <el-color-picker
+          v-if="itemForm.type === 'color-picker'"
+          v-model="formParams.data[key]"
+        />
+        <el-transfer
+          v-if="itemForm.type === 'transfer'"
+          v-model="formParams.data[key]"
+          :data="itemForm.transferData"
+        />
         <!-- 表单其他组件 -->
         <template
-          v-if="itemForm.slots && itemForm.slots.default"
-          #default="{ column, $index }"
+          v-if="itemForm.slots && itemForm.slots.formItem"
+          #formItem="{ column, $index }"
         >
           <slot
-            :name="itemForm.slots!.default"
+            :name="itemForm.slots!.formItem"
             :column="column"
             :index="$index"
+          />
+
+          <slot
+            v-if="itemForm.type === 'customItem'"
+            :name="itemForm.name ? itemForm.name : 'customItem'"
+            :item-form="itemForm"
+            :form-date="formParams.data"
+            :item-key="key"
           />
         </template>
       </el-form-item>
 
-      <div class="form-submit">
-        <template v-if="formParams.submit">
-          <el-button
-            :type="formParams.submit.submitType || 'primary'"
-            :plain="formParams.submit.submitPlain || false"
-            :icon="formParams.submit.submitIcon"
-            class="submit-btn submit"
-            @click="submitForm(formParams.submit.submitFunction)"
-          >
-            {{ formParams.submit.submitText || '查询' }}
-          </el-button>
-        </template>
-        <!-- 表单其他按钮 -->
-        <template v-if="formParams.otherBtn">
-          <slot :name="formParams.otherBtn.slots!.default" />
-        </template>
-      </div>
+      <el-form-item v-if="formParams.submit">
+        <el-button
+          type="primary"
+          :disabled="formParams.submit.disabled"
+          @click="formParams.submit?.submitFunction"
+        >
+          {{ formParams.submit.submitText || '提交' }}
+        </el-button>
+
+        <el-button
+          v-if="formParams.submit.reset"
+          type="info"
+          @click="resetForm"
+        >
+          重置
+        </el-button>
+
+        <el-button
+          v-if="formParams.submit.cancel"
+          type="info"
+          @click="formParams.submit?.cancelFunction"
+        >
+          {{ formParams.submit.cancelText || '取消' }}
+        </el-button>
+      </el-form-item>
+      <slot name="buttonGroup" />
     </el-form>
   </div>
 </template>
-<style lang="scss" scoped>
-/* stylelint-disable-next-line selector-class-pattern */
-:deep(.el-input__wrapper) {
-  height: 40px;
-  position: relative;
-  width: 100%;
-}
+<style lang="scss" scoped></style>
 
-.el-form-item {
-  display: inline-block;
-  padding-right: 30px;
-}
+<style scoped lang="scss">
+// .form-container {
+// width: v-bind('formStyle.formWidth');
+// }
 
-:deep(.el-form) {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  width: 100%;
-}
+// .el-form-item:last-child {
+// display: v-bind('formStyle.submitButton');
+//   text-align: center;
+// }
 
-/* stylelint-disable-next-line  */
-:deep(.el-form-item__content) {
-  display: inline-block;
-}
-/* stylelint-disable-next-line  */
-:deep(.el-form-item__content) {
-  width: 70%;
-}
-
-.form-submit {
-  display: inline-block;
-  line-height: 37px;
-}
-
-:deep(.el-select) {
-  width: 100%;
-}
-
-// 表单时间插件
-/* stylelint-disable-next-line selector-class-pattern */
-:deep(.el-input__prefix) {
-  position: absolute;
-  right: 5px;
-}
+// .el-select,
+// .el-cascader,
+// .el-time-select,
+// .el-time-picker,
+// .el-date-picker {
+//   width: 100%;
+// }
 </style>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { ElTable } from 'element-plus'
+import { ElTable } from 'element-plus'
 
 const tableDom = ref<InstanceType<typeof ElTable>>()
 

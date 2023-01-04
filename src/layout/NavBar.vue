@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 // import avatar from '@/assets/avatar.png'
-import avatar from '@/assets/avatar.gif'
+// import avatar from '@/assets/avatar.gif'
+// <img src="https://assets.fedtop.com/picbed/202211091418920.gif"/>
 
+const avatar = 'https://assets.fedtop.com/picbed/202211091418920.gif'
 const router = useRouter()
 const state = reactive({})
 function logout() {

@@ -7,6 +7,7 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import router from '@/router/index'
 import { name } from '../../package.json'
+import { useStore } from '@/store/index'
 
 export interface toRouteType extends RouteLocationNormalized {
   meta: {
@@ -40,7 +41,19 @@ router.beforeEach((async (
   from: toRouteType,
   next: NavigationGuardNext,
 ) => {
-  // console.log('🚀🚀🚀 / to', to)
+  next()
+  return
+
+  const store = useStore()
+  if (to.path === '/login') {
+    next()
+    return
+  }
+  // console.log('🚀🚀🚀 / store', store.userInfo.token)
+  if (!store.userInfo.token) {
+    next('/login')
+    return
+  }
   NProgress.start()
   next()
   window.document.title = `${name} | ${to.meta.title}`

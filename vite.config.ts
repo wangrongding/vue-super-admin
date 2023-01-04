@@ -94,6 +94,7 @@ export default defineConfig((config) => ({
         // 自动注册图标组件
         IconsResolver({
           extension: 'vue',
+          // enabledCollections: ['ep'],
         }),
         // 自动导入 Element Plus 组件
         ElementPlusResolver(),
@@ -106,7 +107,7 @@ export default defineConfig((config) => ({
   // 服务器特定选项，如主机、端口、https…
   server: {
     host: '0.0.0.0',
-    port: 9421,
+    port: 8083,
     open: false,
     hmr: true,
     proxy: {
@@ -130,26 +131,27 @@ export default defineConfig((config) => ({
       scss: {
         // 给含有中文的scss文件添加 @charset:UTF-8;
         charset: false,
-        // 在全局中使用 variable.scss中预定义的变量
+        // 在全局中使用 index.scss中预定义的变量
         additionalData:
           '@import "./src/styles/variable.scss";@import "./src/styles/element.scss";',
       },
     },
-    postcss: {
-      plugins: [
-        {
-          // 通过postcss删除组件库中 scss 文件的 @charset:UTF-8
-          postcssPlugin: 'internal:charset-removal',
-          AtRule: {
-            charset: (atRule) => {
-              if (atRule.name === 'charset') {
-                atRule.remove()
-              }
-            },
-          },
-        },
-      ],
-    },
+    // 暂时移除，会导致 tailwind css 无法使用
+    // postcss: {
+    //   plugins: [
+    //     {
+    //       // 通过postcss删除组件库中 scss 文件的 @charset:UTF-8
+    //       postcssPlugin: 'internal:charset-removal',
+    //       AtRule: {
+    //         charset: (atRule) => {
+    //           if (atRule.name === 'charset') {
+    //             atRule.remove()
+    //           }
+    //         },
+    //       },
+    //     },
+    //   ],
+    // },
   },
   build: {
     outDir: 'dist',

@@ -1,31 +1,32 @@
 <script setup lang="ts">
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-
 interface IProps {
   /** svg 的图标的名称 */
   iconName: string
   color: string
+  iconStyle?: string
 }
-// const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 const props = defineProps<IProps>()
+// const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 const symbolId = computed(() => `#icon-${props.iconName}`)
 
-const elIconList = Object.keys(ElementPlusIconsVue)
-const isElIcon = computed(() => {
-  // return props.iconName.startsWith('el-')
-  return elIconList.includes(props.iconName)
+const elementPlusIcon = computed(() => {
+  if (props.iconName.startsWith('el-')) {
+    return props.iconName.replace('el-', '')
+  }
+  return false
 })
 </script>
 
 <template>
-  <el-icon v-if="isElIcon" :color="color" :size="20">
-    <component :is="iconName.replace('el-', '')"></component>
+  <el-icon v-if="elementPlusIcon" :color="color" :size="20">
+    <component :is="elementPlusIcon"></component>
   </el-icon>
   <div v-else style="tab-size: 4px; margin-right: 5px" class="svg-icon">
     <svg aria-hidden="true" :style="{ margin: '2px', width: '20px' }">
       <use :href="symbolId" />
     </svg>
   </div>
+  <div></div>
 </template>
 
 <style>

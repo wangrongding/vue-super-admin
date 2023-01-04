@@ -667,3 +667,49 @@ export default defineConfig((config) => ({
   // ...
 }))
 ```
+
+## 集成 TailwindCss
+
+安装插件
+
+```sh
+npm install -D tailwindcss@latest postcss@latest autoprefixer@lates
+```
+
+生成相关配置文件
+
+```sh
+# 将会生成 tailwind.config.js 和 postcss.config.js 文件
+npx tailwindcss init -p
+```
+
+在`tailwind.config.js`中添加如下配置
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  // 配置 content 选项，告诉 Tailwind 哪些文件需要检查，使得 Tailwind 可以在生产构建中对未使用的样式进行 tree-shaking 优化。
+  content: [
+    './index.html',
+    './src/**/*.{vue,js,ts,jsx,tsx,css,scss,sass,less}',
+  ],
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+```javascript
+// postcss.config.js
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+```

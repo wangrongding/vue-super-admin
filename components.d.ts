@@ -3,6 +3,8 @@
 // Read more: https://github.com/vuejs/core/pull/3399
 import '@vue/runtime-core'
 
+export {}
+
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BaseChartBar: typeof import('./src/components/BaseChart/BaseChartBar.vue')['default']
@@ -13,17 +15,35 @@ declare module '@vue/runtime-core' {
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCascader: typeof import('element-plus/es')['ElCascader']
+    ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
+    ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElOption: typeof import('element-plus/es')['ElOption']
+    ElRadio: typeof import('element-plus/es')['ElRadio']
+    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
+    ElRate: typeof import('element-plus/es')['ElRate']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
+    ElSelect: typeof import('element-plus/es')['ElSelect']
+    ElSlider: typeof import('element-plus/es')['ElSlider']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTimePicker: typeof import('element-plus/es')['ElTimePicker']
+    ElTimeSelect: typeof import('element-plus/es')['ElTimeSelect']
+    ElTransfer: typeof import('element-plus/es')['ElTransfer']
     IMaterialSymbolsLogout: typeof import('~icons/material-symbols/logout.vue')['default']
     IWpfPassword1: typeof import('~icons/wpf/password1.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
@@ -33,6 +53,7 @@ declare module '@vue/runtime-core' {
     SuperTable: typeof import('./src/components/SuperTable/index.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
   }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+  }
 }
-
-export {}
