@@ -646,6 +646,13 @@ main 文件中引入以下
 import 'virtual:svg-icons-register'
 ```
 
+## 使用 svg 组件的方式
+
+- https://dev.to/geowrgetudor/dealing-with-svg-icons-in-vue-vite-an9
+- https://dev.to/lakshmananarumugam/svg-icon-system-for-vue-cli-3-2am8
+- https://cloudconvert.com/svg-to-ico
+- https://svgcrop.com/
+
 ## 解决 vue3.2 <script setup> 中 definedProps 引入类型会导致错误的问题
 
 安装插件
